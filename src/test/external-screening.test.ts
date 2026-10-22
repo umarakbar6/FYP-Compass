@@ -132,6 +132,24 @@ describe('External evidence screening', () => {
         new URL(String(input)).hostname,
       );
   });
+  it.each([
+    ['Research &amp; safety &lt;methods&gt; &quot;review&quot;', 'Research & safety <methods> "review"'],
+    ['Literal &amp;lt;tag&amp;gt; and &amp;quot;quote&amp;quot;', 'Literal &lt;tag&gt; and &quot;quote&quot;'],
+    ['Nested &amp;amp;lt; stays encoded', 'Nested &amp;lt; stays encoded'],
+  ])('decodes provider entities once: %s', async (encoded, decoded) => {
+    const mock = vi.fn(async (input: RequestInfo | URL) =>
+      new URL(String(input)).hostname === 'www.ebi.ac.uk'
+        ? Response.json({
+            resultList: {
+              result: [{ id: '123', source: 'MED', title: encoded, abstractText: text }],
+            },
+          })
+        : Response.json({}),
+    );
+    const result = await externalScreening('Plant disease detection', text, mock as typeof fetch);
+    expect(result.sources).toHaveLength(1);
+    expect(result.sources[0].title).toBe(decoded);
+  });
   it('reports unavailable providers without certifying originality', async () => {
     const result = await externalScreening(
       'Plant disease detection',
