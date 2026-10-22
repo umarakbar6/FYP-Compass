@@ -26,10 +26,10 @@ export type ExternalScreening = {
 function plain(value: unknown): string {
   return typeof value === 'string'
     ? stripMarkup(value)
-        .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&')
         .replace(/\s+/g, ' ')
         .trim()
     : '';
