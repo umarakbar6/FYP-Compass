@@ -1,5 +1,9 @@
 name: FYP Compass quality
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -8,6 +12,9 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    env:
+      npm_config_fetch_retries: 1
+      npm_config_fetch_timeout: 30000
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -17,8 +24,8 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci --ignore-scripts
-      - run: npm ci --prefix backend/local-tests --ignore-scripts
+      - run: npm ci --ignore-scripts --no-audit
+      - run: npm ci --prefix backend/local-tests --ignore-scripts --no-audit
       - run: npm run lint
       - run: npm test -- --maxWorkers=1
       - run: npm run test:cloud
