@@ -1,0 +1,238 @@
+.milestone-dashboard {
+  margin-top: 24px;
+}
+.milestone-summary-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.milestone-summary-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px;
+  background: #f6f9fc;
+  border: 1px solid #dde8f1;
+  border-radius: 12px;
+  color: #173752;
+}
+.milestone-summary-item small,
+.milestone-table-sub {
+  display: block;
+  color: #52677b;
+  margin-top: 6px;
+  font-size: 12px;
+}
+.milestone-summary-item p {
+  font-size: 13px;
+  margin: 9px 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.milestone-badges {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.milestone-filter {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: #5e7891;
+}
+.milestone-filter select {
+  padding: 8px 12px;
+  border: 1px solid #cdddeb;
+  border-radius: 8px;
+  background: #fff;
+  color: #183e5c;
+}
+.milestone-detail-heading {
+  margin-top: 22px;
+}
+.milestone-deadline-strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  gap: 24px;
+  padding: 22px 26px;
+  border: 1px solid #d7e3ed;
+  border-radius: 14px;
+  background: linear-gradient(100deg, #eef6fc, #fff);
+  margin: 22px 0;
+}
+.milestone-deadline-strip > div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 9px;
+}
+.milestone-deadline-strip strong {
+  font-size: 15px;
+  color: #21465f;
+}
+.milestone-detail-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.milestone-stack {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.milestone-form {
+  display: grid;
+  gap: 12px;
+}
+.milestone-form > label {
+  font-size: 13px;
+  color: #395b77;
+}
+.milestone-form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 125px;
+  border: 1px solid #cdddea;
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+  color: #23465f;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.milestone-form textarea:focus {
+  outline: 2px solid #65b6ed;
+  outline-offset: 2px;
+}
+.milestone-actions {
+  border: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.milestone-actions legend {
+  font-size: 13px;
+  color: #395b77;
+  margin-bottom: 10px;
+}
+.milestone-actions label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #d2e1ee;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.milestone-actions input {
+  accent-color: #218ace;
+}
+.milestone-file {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid #d5e4f0;
+  border-radius: 12px;
+  background: #f4f8fc;
+  overflow-wrap: anywhere;
+}
+.milestone-file > span {
+  font-size: 12px;
+  color: #748a9b;
+}
+.contribution-cards {
+  display: grid;
+  gap: 14px;
+}
+.contribution-cards article {
+  border-left: 3px solid #318fce;
+  background: #f6f9fc;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-wrap: anywhere;
+}
+.contribution-cards strong {
+  font-size: 14px;
+  color: #244b69;
+}
+.contribution-cards p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.contribution-cards small,
+.milestone-feedback-panel small {
+  font-size: 11px;
+  color: #70869b;
+}
+.preserve-lines {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.milestone-feedback-panel {
+  border-top: 3px solid #e5ab40;
+}
+.milestone-success {
+  color: #187348;
+  font-size: 13px;
+}
+.milestone-history {
+  margin-top: 24px;
+}
+.milestone-history details {
+  padding: 18px 0;
+  border-top: 1px solid #dae5ed;
+}
+.milestone-history summary {
+  cursor: pointer;
+  line-height: 1.7;
+  font-size: 13px;
+  color: #235778;
+}
+.milestone-history details > .panel {
+  margin-top: 16px;
+}
+.milestone-detail-grid h2 {
+  overflow-wrap: anywhere;
+}
+.milestone-summary-item > div:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1000px) {
+  .milestone-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .milestone-deadline-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .milestone-summary-item {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .milestone-deadline-strip {
+    padding: 18px;
+    gap: 20px;
+  }
+  .milestone-deadline-strip strong {
+    font-size: 12px;
+  }
+  .milestone-filter {
+    width: 100%;
+  }
+  .milestone-actions {
+    flex-direction: column;
+  }
+  .milestone-form .button {
+    width: 100%;
+  }
+  .milestone-summary-item {
+    padding: 14px;
+  }
+}

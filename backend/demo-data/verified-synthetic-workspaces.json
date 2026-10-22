@@ -1,0 +1,2137 @@
+{
+  "projectRef": "mqzsrphoagzfmdovmukg",
+  "exportedAt": "2026-10-12T05:04:38.916Z",
+  "syntheticOnly": true,
+  "format": "read-only application workspace snapshot; not replayable SQL",
+  "identities": [
+    {
+      "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+      "role": "student",
+      "name": "Student One"
+    },
+    {
+      "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+      "role": "student",
+      "name": "Student Two"
+    },
+    {
+      "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+      "role": "student",
+      "name": "Student Three"
+    },
+    {
+      "id": "4486e725-e0d8-423a-af89-59fc165838f8",
+      "role": "supervisor",
+      "name": "Demo Supervisor"
+    },
+    {
+      "id": "e5217a42-8d21-4e5e-8452-455218254bf5",
+      "role": "examiner",
+      "name": "Examiner One"
+    },
+    {
+      "id": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+      "role": "examiner",
+      "name": "Examiner Two"
+    },
+    {
+      "id": "e38e8b04-25a3-4c93-bb1b-fbba8e26c840",
+      "role": "coordinator",
+      "name": "Demo Coordinator"
+    },
+    {
+      "id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+      "role": "supervisor",
+      "name": "Demo Supervisor Two"
+    },
+    {
+      "id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+      "role": "supervisor",
+      "name": "Demo Supervisor Three"
+    }
+  ],
+  "session": {
+    "id": "599893cf-299a-494d-9a1f-155e2f6c5b97",
+    "name": "FYP Compass Hackathon Demo 2026",
+    "active": true
+  },
+  "groups": [
+    {
+      "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+      "name": "FYP Compass Demo Team",
+      "members": [
+        {
+          "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+          "role": "student",
+          "full_name": "Student Three"
+        },
+        {
+          "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+          "role": "student",
+          "full_name": "Student Two"
+        },
+        {
+          "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+          "role": "student",
+          "full_name": "Student One"
+        }
+      ],
+      "proposal": {
+        "id": "1cd8522a-0a67-40b3-8099-72b4953ac8a2",
+        "title": "FYP Compass Synthetic Demo Project",
+        "review": {
+          "action": "approve",
+          "comment": "Synthetic demo proposal reviewed.",
+          "reviewed_at": "2026-10-08T07:32:21.794185+00:00",
+          "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+          "justification": "Independent synthetic project evidence reviewed for the hackathon."
+        },
+        "status": "approved",
+        "abstract": "A synthetic demonstration of a secure academic project supervision portal, milestone evidence, independent assessment and confidential results.",
+        "document": null,
+        "feedback": "Synthetic demo proposal reviewed.",
+        "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+        "keywords": [
+          "supervision",
+          "academic",
+          "demo"
+        ],
+        "topic_ids": [
+          "d3e15720-334d-4f11-82df-530f0860f358",
+          "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+          "cecf682f-f148-487a-908e-d7bb7eb00416"
+        ],
+        "similarity": {
+          "method": "Token-set Jaccard internal comparison",
+          "status": "clear",
+          "threshold": 60,
+          "disclaimer": "Internal similarity screening is a review signal, not a plagiarism verdict.",
+          "percentage": 0,
+          "screened_at": "2026-10-08T07:32:21.477195+00:00",
+          "closest_title": null,
+          "closest_proposal_id": null
+        },
+        "started_at": "2026-10-08T07:32:21.794185+00:00",
+        "submitted_at": "2026-10-08T07:32:20.491171+00:00",
+        "supervisor_ids": [
+          "4486e725-e0d8-423a-af89-59fc165838f8",
+          "6af6925e-1925-4498-bec5-a823f2d3de0e",
+          "1291fb51-babc-4ac7-b448-ffb18e514a47"
+        ]
+      },
+      "allocation": {
+        "seed": "fyp-compass-cloud-demo-2026",
+        "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+        "created_at": "2026-10-08T07:32:20.82431+00:00",
+        "explanation": "Preference round 1; topic tie points 3/3; stored seed fyp-compass-cloud-demo-2026; available capacity before round 2.",
+        "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+        "preference_rank": 1
+      },
+      "session_id": "599893cf-299a-494d-9a1f-155e2f6c5b97"
+    }
+  ],
+  "students": [
+    {
+      "name": "Student One",
+      "workspace": {
+        "group": {
+          "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "name": "FYP Compass Demo Team",
+          "members": [
+            {
+              "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "role": "student",
+              "full_name": "Student Three"
+            },
+            {
+              "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "role": "student",
+              "full_name": "Student Two"
+            },
+            {
+              "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+              "role": "student",
+              "full_name": "Student One"
+            }
+          ],
+          "session_id": "599893cf-299a-494d-9a1f-155e2f6c5b97"
+        },
+        "topics": [
+          {
+            "id": "d3e15720-334d-4f11-82df-530f0860f358",
+            "name": "Academic Technology"
+          },
+          {
+            "id": "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "name": "Data Systems"
+          },
+          {
+            "id": "cecf682f-f148-487a-908e-d7bb7eb00416",
+            "name": "Web Engineering"
+          }
+        ],
+        "session": {
+          "id": "599893cf-299a-494d-9a1f-155e2f6c5b97",
+          "name": "FYP Compass Hackathon Demo 2026"
+        },
+        "proposal": {
+          "id": "1cd8522a-0a67-40b3-8099-72b4953ac8a2",
+          "title": "FYP Compass Synthetic Demo Project",
+          "status": "approved",
+          "abstract": "A synthetic demonstration of a secure academic project supervision portal, milestone evidence, independent assessment and confidential results.",
+          "document": null,
+          "feedback": "Synthetic demo proposal reviewed.",
+          "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "keywords": [
+            "supervision",
+            "academic",
+            "demo"
+          ],
+          "topic_ids": [
+            "d3e15720-334d-4f11-82df-530f0860f358",
+            "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "cecf682f-f148-487a-908e-d7bb7eb00416"
+          ],
+          "submitted_at": "2026-10-08T07:32:20.491171+00:00",
+          "supervisor_ids": [
+            "4486e725-e0d8-423a-af89-59fc165838f8",
+            "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "1291fb51-babc-4ac7-b448-ffb18e514a47"
+          ]
+        },
+        "allocation": {
+          "explanation": "Preference round 1; topic tie points 3/3; stored seed fyp-compass-cloud-demo-2026; available capacity before round 2.",
+          "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+          "preference_rank": 1,
+          "supervisor_name": "Demo Supervisor"
+        },
+        "supervisors": [
+          {
+            "id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor"
+          },
+          {
+            "id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Three"
+          },
+          {
+            "id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Two"
+          }
+        ],
+        "eligible_members": []
+      },
+      "assessment": {
+        "results": [
+          {
+            "id": "a81f78c1-fa0f-4d63-9198-1c5e71cacddf",
+            "total": 91,
+            "version": 1,
+            "defense_id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "group_mark": 48,
+            "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+            "released_at": "2026-10-08T07:45:24.504091+00:00",
+            "verified_at": "2026-10-08T07:45:23.873175+00:00",
+            "verified_by": "e38e8b04-25a3-4c93-bb1b-fbba8e26c840",
+            "individual_mark": 43,
+            "group_components": {
+              "report": 14,
+              "progress": 12,
+              "proposal": 8,
+              "implementation": 14
+            },
+            "individual_components": {
+              "peer": 8,
+              "viva": 20,
+              "contribution": 15
+            }
+          }
+        ],
+        "actor_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+        "defenses": [],
+        "projects": [],
+        "examiners": []
+      },
+      "health": {
+        "notices": [
+          {
+            "id": "07ca5208-c3ae-4ccf-b9ab-51a342034da4",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "report_id": "bb102b3f-e44b-4b32-9c7a-26e58d0f01dd",
+            "created_at": "2026-10-08T07:32:23.177134+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "73630096-bad2-49c1-88f5-2308da3aae0d",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "1a34f937-7c7e-4db8-9483-c1d72cdba851",
+            "created_at": "2026-10-08T07:37:56.916437+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "1822975b-745d-43a1-b50e-cb5d88de5909",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "34b67659-a415-4adb-b9ef-43b563cc2f2c",
+            "created_at": "2026-10-08T07:45:06.614924+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "3d8e8b26-68d5-4d86-aaa4-d7ead8fe51ef",
+            "body": "You have a project deadline approaching in the next few days. Please check in with your supervisor if you need support, clarification, or guidance on finalizing your submission.",
+            "level": "amber",
+            "read_by": [
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "report_id": "67ac6569-d256-443d-bedb-1df756c1b655",
+            "created_at": "2026-10-10T14:52:57.808854+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          },
+          {
+            "id": "270fd5b2-7fe5-4062-a18f-456ed5d30ddf",
+            "body": "You have an important deadline approaching in three days. Please reach out to your supervisor if you need support or guidance to complete your work on time. This is a synthetic demo notice.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "09d0cd1b-61a4-44cc-8d91-5462f3231d53",
+            "created_at": "2026-10-10T15:24:26.333284+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          }
+        ],
+        "reports": [],
+        "actor_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "name": "Synthetic Red Health Team",
+            "title": "Synthetic Red Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:27.234+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "name": "Synthetic Amber Health Team",
+            "title": "Synthetic Amber Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:27.234+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "name": "FYP Compass Demo Team",
+            "title": "FYP Compass Synthetic Demo Project",
+            "health": {
+              "level": "green",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:27.234+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      },
+      "milestones": {
+        "actor_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "title": "Synthetic Red Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Red Health Team",
+            "milestones": [
+              {
+                "id": "3ca23152-82a0-48f6-9754-b17bce1dc3a4",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-09T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "title": "Synthetic Amber Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Amber Health Team",
+            "milestones": [
+              {
+                "id": "005bd3b0-b619-46b5-aed0-b7b5c32177b3",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-12T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "FYP Compass Demo Team",
+            "milestones": [
+              {
+                "id": "c3a9efda-1329-4515-9482-dc54aaecdaf6",
+                "name": "Demo evidence review",
+                "status": "accepted",
+                "deadline": "2026-10-09T07:32:21.794185+00:00",
+                "description": "Synthetic hackathon demonstration evidence only.",
+                "submissions": [
+                  {
+                    "id": "8aad6ef7-90b6-4dd4-8e94-ee1ed1c97454",
+                    "review": {
+                      "action": "needs_rework",
+                      "feedback": "Synthetic demonstration: add the remaining individual evidence.",
+                      "reviewed_at": "2026-10-08T07:45:11.467813+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-original.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-original.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:10.569134+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:10.569134+00:00"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "7ad76e86-abd3-4a5c-aeed-06b97f280a9b",
+                    "review": {
+                      "action": "accepted",
+                      "feedback": "All synthetic contribution evidence reviewed.",
+                      "reviewed_at": "2026-10-08T07:45:16.609219+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-revision.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-revision.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:15.594384+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:15.594384+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                        "updated_at": "2026-10-08T07:45:15.972111+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                        "updated_at": "2026-10-08T07:45:16.296127+00:00"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Student Two",
+      "workspace": {
+        "group": {
+          "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "name": "FYP Compass Demo Team",
+          "members": [
+            {
+              "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "role": "student",
+              "full_name": "Student Three"
+            },
+            {
+              "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "role": "student",
+              "full_name": "Student Two"
+            },
+            {
+              "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+              "role": "student",
+              "full_name": "Student One"
+            }
+          ],
+          "session_id": "599893cf-299a-494d-9a1f-155e2f6c5b97"
+        },
+        "topics": [
+          {
+            "id": "d3e15720-334d-4f11-82df-530f0860f358",
+            "name": "Academic Technology"
+          },
+          {
+            "id": "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "name": "Data Systems"
+          },
+          {
+            "id": "cecf682f-f148-487a-908e-d7bb7eb00416",
+            "name": "Web Engineering"
+          }
+        ],
+        "session": {
+          "id": "599893cf-299a-494d-9a1f-155e2f6c5b97",
+          "name": "FYP Compass Hackathon Demo 2026"
+        },
+        "proposal": {
+          "id": "1cd8522a-0a67-40b3-8099-72b4953ac8a2",
+          "title": "FYP Compass Synthetic Demo Project",
+          "status": "approved",
+          "abstract": "A synthetic demonstration of a secure academic project supervision portal, milestone evidence, independent assessment and confidential results.",
+          "document": null,
+          "feedback": "Synthetic demo proposal reviewed.",
+          "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "keywords": [
+            "supervision",
+            "academic",
+            "demo"
+          ],
+          "topic_ids": [
+            "d3e15720-334d-4f11-82df-530f0860f358",
+            "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "cecf682f-f148-487a-908e-d7bb7eb00416"
+          ],
+          "submitted_at": "2026-10-08T07:32:20.491171+00:00",
+          "supervisor_ids": [
+            "4486e725-e0d8-423a-af89-59fc165838f8",
+            "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "1291fb51-babc-4ac7-b448-ffb18e514a47"
+          ]
+        },
+        "allocation": {
+          "explanation": "Preference round 1; topic tie points 3/3; stored seed fyp-compass-cloud-demo-2026; available capacity before round 2.",
+          "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+          "preference_rank": 1,
+          "supervisor_name": "Demo Supervisor"
+        },
+        "supervisors": [
+          {
+            "id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor"
+          },
+          {
+            "id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Three"
+          },
+          {
+            "id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Two"
+          }
+        ],
+        "eligible_members": []
+      },
+      "assessment": {
+        "results": [
+          {
+            "id": "5228b535-3752-4025-8339-2718ae1a7b93",
+            "total": 86,
+            "version": 1,
+            "defense_id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "group_mark": 48,
+            "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+            "released_at": "2026-10-08T07:45:24.504091+00:00",
+            "verified_at": "2026-10-08T07:45:23.873175+00:00",
+            "verified_by": "e38e8b04-25a3-4c93-bb1b-fbba8e26c840",
+            "individual_mark": 38,
+            "group_components": {
+              "report": 14,
+              "progress": 12,
+              "proposal": 8,
+              "implementation": 14
+            },
+            "individual_components": {
+              "peer": 8,
+              "viva": 18,
+              "contribution": 12
+            }
+          }
+        ],
+        "actor_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+        "defenses": [],
+        "projects": [],
+        "examiners": []
+      },
+      "health": {
+        "notices": [
+          {
+            "id": "07ca5208-c3ae-4ccf-b9ab-51a342034da4",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "bb102b3f-e44b-4b32-9c7a-26e58d0f01dd",
+            "created_at": "2026-10-08T07:32:23.177134+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "73630096-bad2-49c1-88f5-2308da3aae0d",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "1a34f937-7c7e-4db8-9483-c1d72cdba851",
+            "created_at": "2026-10-08T07:37:56.916437+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "1822975b-745d-43a1-b50e-cb5d88de5909",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "34b67659-a415-4adb-b9ef-43b563cc2f2c",
+            "created_at": "2026-10-08T07:45:06.614924+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "3d8e8b26-68d5-4d86-aaa4-d7ead8fe51ef",
+            "body": "You have a project deadline approaching in the next few days. Please check in with your supervisor if you need support, clarification, or guidance on finalizing your submission.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "67ac6569-d256-443d-bedb-1df756c1b655",
+            "created_at": "2026-10-10T14:52:57.808854+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          },
+          {
+            "id": "270fd5b2-7fe5-4062-a18f-456ed5d30ddf",
+            "body": "You have an important deadline approaching in three days. Please reach out to your supervisor if you need support or guidance to complete your work on time. This is a synthetic demo notice.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "09d0cd1b-61a4-44cc-8d91-5462f3231d53",
+            "created_at": "2026-10-10T15:24:26.333284+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          }
+        ],
+        "reports": [],
+        "actor_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "name": "Synthetic Red Health Team",
+            "title": "Synthetic Red Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:29.08+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "name": "Synthetic Amber Health Team",
+            "title": "Synthetic Amber Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:29.08+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "name": "FYP Compass Demo Team",
+            "title": "FYP Compass Synthetic Demo Project",
+            "health": {
+              "level": "green",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:29.08+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      },
+      "milestones": {
+        "actor_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "title": "Synthetic Red Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Red Health Team",
+            "milestones": [
+              {
+                "id": "3ca23152-82a0-48f6-9754-b17bce1dc3a4",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-09T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "title": "Synthetic Amber Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Amber Health Team",
+            "milestones": [
+              {
+                "id": "005bd3b0-b619-46b5-aed0-b7b5c32177b3",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-12T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "FYP Compass Demo Team",
+            "milestones": [
+              {
+                "id": "c3a9efda-1329-4515-9482-dc54aaecdaf6",
+                "name": "Demo evidence review",
+                "status": "accepted",
+                "deadline": "2026-10-09T07:32:21.794185+00:00",
+                "description": "Synthetic hackathon demonstration evidence only.",
+                "submissions": [
+                  {
+                    "id": "8aad6ef7-90b6-4dd4-8e94-ee1ed1c97454",
+                    "review": {
+                      "action": "needs_rework",
+                      "feedback": "Synthetic demonstration: add the remaining individual evidence.",
+                      "reviewed_at": "2026-10-08T07:45:11.467813+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-original.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-original.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:10.569134+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:10.569134+00:00"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "7ad76e86-abd3-4a5c-aeed-06b97f280a9b",
+                    "review": {
+                      "action": "accepted",
+                      "feedback": "All synthetic contribution evidence reviewed.",
+                      "reviewed_at": "2026-10-08T07:45:16.609219+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-revision.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-revision.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:15.594384+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:15.594384+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                        "updated_at": "2026-10-08T07:45:15.972111+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                        "updated_at": "2026-10-08T07:45:16.296127+00:00"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Student Three",
+      "workspace": {
+        "group": {
+          "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "name": "FYP Compass Demo Team",
+          "members": [
+            {
+              "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "role": "student",
+              "full_name": "Student Three"
+            },
+            {
+              "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "role": "student",
+              "full_name": "Student Two"
+            },
+            {
+              "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+              "role": "student",
+              "full_name": "Student One"
+            }
+          ],
+          "session_id": "599893cf-299a-494d-9a1f-155e2f6c5b97"
+        },
+        "topics": [
+          {
+            "id": "d3e15720-334d-4f11-82df-530f0860f358",
+            "name": "Academic Technology"
+          },
+          {
+            "id": "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "name": "Data Systems"
+          },
+          {
+            "id": "cecf682f-f148-487a-908e-d7bb7eb00416",
+            "name": "Web Engineering"
+          }
+        ],
+        "session": {
+          "id": "599893cf-299a-494d-9a1f-155e2f6c5b97",
+          "name": "FYP Compass Hackathon Demo 2026"
+        },
+        "proposal": {
+          "id": "1cd8522a-0a67-40b3-8099-72b4953ac8a2",
+          "title": "FYP Compass Synthetic Demo Project",
+          "status": "approved",
+          "abstract": "A synthetic demonstration of a secure academic project supervision portal, milestone evidence, independent assessment and confidential results.",
+          "document": null,
+          "feedback": "Synthetic demo proposal reviewed.",
+          "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+          "keywords": [
+            "supervision",
+            "academic",
+            "demo"
+          ],
+          "topic_ids": [
+            "d3e15720-334d-4f11-82df-530f0860f358",
+            "70b36b2f-f94b-45c5-a549-e7a34ee38b50",
+            "cecf682f-f148-487a-908e-d7bb7eb00416"
+          ],
+          "submitted_at": "2026-10-08T07:32:20.491171+00:00",
+          "supervisor_ids": [
+            "4486e725-e0d8-423a-af89-59fc165838f8",
+            "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "1291fb51-babc-4ac7-b448-ffb18e514a47"
+          ]
+        },
+        "allocation": {
+          "explanation": "Preference round 1; topic tie points 3/3; stored seed fyp-compass-cloud-demo-2026; available capacity before round 2.",
+          "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+          "preference_rank": 1,
+          "supervisor_name": "Demo Supervisor"
+        },
+        "supervisors": [
+          {
+            "id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor"
+          },
+          {
+            "id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Three"
+          },
+          {
+            "id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "full_name": "Demo Supervisor Two"
+          }
+        ],
+        "eligible_members": []
+      },
+      "assessment": {
+        "results": [
+          {
+            "id": "28c60ba9-7918-4d2e-93c3-162db264e628",
+            "total": 82,
+            "version": 1,
+            "defense_id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "group_mark": 48,
+            "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+            "released_at": "2026-10-08T07:45:24.504091+00:00",
+            "verified_at": "2026-10-08T07:45:23.873175+00:00",
+            "verified_by": "e38e8b04-25a3-4c93-bb1b-fbba8e26c840",
+            "individual_mark": 34,
+            "group_components": {
+              "report": 14,
+              "progress": 12,
+              "proposal": 8,
+              "implementation": 14
+            },
+            "individual_components": {
+              "peer": 8,
+              "viva": 16,
+              "contribution": 10
+            }
+          }
+        ],
+        "actor_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+        "defenses": [],
+        "projects": [],
+        "examiners": []
+      },
+      "health": {
+        "notices": [
+          {
+            "id": "07ca5208-c3ae-4ccf-b9ab-51a342034da4",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "bb102b3f-e44b-4b32-9c7a-26e58d0f01dd",
+            "created_at": "2026-10-08T07:32:23.177134+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "73630096-bad2-49c1-88f5-2308da3aae0d",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "1a34f937-7c7e-4db8-9483-c1d72cdba851",
+            "created_at": "2026-10-08T07:37:56.916437+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "1822975b-745d-43a1-b50e-cb5d88de5909",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "34b67659-a415-4adb-b9ef-43b563cc2f2c",
+            "created_at": "2026-10-08T07:45:06.614924+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "3d8e8b26-68d5-4d86-aaa4-d7ead8fe51ef",
+            "body": "You have a project deadline approaching in the next few days. Please check in with your supervisor if you need support, clarification, or guidance on finalizing your submission.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "67ac6569-d256-443d-bedb-1df756c1b655",
+            "created_at": "2026-10-10T14:52:57.808854+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          },
+          {
+            "id": "270fd5b2-7fe5-4062-a18f-456ed5d30ddf",
+            "body": "You have an important deadline approaching in three days. Please reach out to your supervisor if you need support or guidance to complete your work on time. This is a synthetic demo notice.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "09d0cd1b-61a4-44cc-8d91-5462f3231d53",
+            "created_at": "2026-10-10T15:24:26.333284+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          }
+        ],
+        "reports": [],
+        "actor_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "name": "Synthetic Red Health Team",
+            "title": "Synthetic Red Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:30.774+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "name": "Synthetic Amber Health Team",
+            "title": "Synthetic Amber Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:30.774+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "name": "FYP Compass Demo Team",
+            "title": "FYP Compass Synthetic Demo Project",
+            "health": {
+              "level": "green",
+              "rules": [],
+              "fingerprint": "",
+              "calculated_at": "2026-10-12T05:04:30.774+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      },
+      "milestones": {
+        "actor_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "title": "Synthetic Red Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Red Health Team",
+            "milestones": [
+              {
+                "id": "3ca23152-82a0-48f6-9754-b17bce1dc3a4",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-09T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "title": "Synthetic Amber Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "Synthetic Amber Health Team",
+            "milestones": [
+              {
+                "id": "005bd3b0-b619-46b5-aed0-b7b5c32177b3",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-12T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "group_name": "FYP Compass Demo Team",
+            "milestones": [
+              {
+                "id": "c3a9efda-1329-4515-9482-dc54aaecdaf6",
+                "name": "Demo evidence review",
+                "status": "accepted",
+                "deadline": "2026-10-09T07:32:21.794185+00:00",
+                "description": "Synthetic hackathon demonstration evidence only.",
+                "submissions": [
+                  {
+                    "id": "8aad6ef7-90b6-4dd4-8e94-ee1ed1c97454",
+                    "review": {
+                      "action": "needs_rework",
+                      "feedback": "Synthetic demonstration: add the remaining individual evidence.",
+                      "reviewed_at": "2026-10-08T07:45:11.467813+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-original.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-original.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:10.569134+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:10.569134+00:00"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "7ad76e86-abd3-4a5c-aeed-06b97f280a9b",
+                    "review": {
+                      "action": "accepted",
+                      "feedback": "All synthetic contribution evidence reviewed.",
+                      "reviewed_at": "2026-10-08T07:45:16.609219+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-revision.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-revision.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:15.594384+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:15.594384+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                        "updated_at": "2026-10-08T07:45:15.972111+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                        "updated_at": "2026-10-08T07:45:16.296127+00:00"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      }
+    }
+  ],
+  "supervisors": [
+    {
+      "name": "Demo Supervisor",
+      "workspace": {
+        "capacity": 2,
+        "proposals": [
+          {
+            "id": "1cd8522a-0a67-40b3-8099-72b4953ac8a2",
+            "title": "FYP Compass Synthetic Demo Project",
+            "review": {
+              "action": "approve",
+              "comment": "Synthetic demo proposal reviewed.",
+              "reviewed_at": "2026-10-08T07:32:21.794185+00:00",
+              "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+              "justification": "Independent synthetic project evidence reviewed for the hackathon."
+            },
+            "status": "approved",
+            "topics": [
+              "Web Engineering",
+              "Data Systems",
+              "Academic Technology"
+            ],
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "project": {
+              "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+              "title": "FYP Compass Synthetic Demo Project",
+              "milestones": [
+                {
+                  "id": "c3a9efda-1329-4515-9482-dc54aaecdaf6",
+                  "name": "Demo evidence review",
+                  "status": "accepted",
+                  "deadline": "2026-10-09T07:32:21.794185+00:00",
+                  "description": "Synthetic hackathon demonstration evidence only.",
+                  "submissions": [
+                    {
+                      "id": "8aad6ef7-90b6-4dd4-8e94-ee1ed1c97454",
+                      "review": {
+                        "action": "needs_rework",
+                        "feedback": "Synthetic demonstration: add the remaining individual evidence.",
+                        "reviewed_at": "2026-10-08T07:45:11.467813+00:00",
+                        "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                      },
+                      "document": {
+                        "name": "cloud-demo-original.pdf",
+                        "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-original.pdf",
+                        "size": 51
+                      },
+                      "submitted_at": "2026-10-08T07:45:10.569134+00:00",
+                      "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                      "contributions": [
+                        {
+                          "statement": "Synthetic demo contribution: implemented the portal.",
+                          "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                          "updated_at": "2026-10-08T07:45:10.569134+00:00"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "7ad76e86-abd3-4a5c-aeed-06b97f280a9b",
+                      "review": {
+                        "action": "accepted",
+                        "feedback": "All synthetic contribution evidence reviewed.",
+                        "reviewed_at": "2026-10-08T07:45:16.609219+00:00",
+                        "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                      },
+                      "document": {
+                        "name": "cloud-demo-revision.pdf",
+                        "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-revision.pdf",
+                        "size": 51
+                      },
+                      "submitted_at": "2026-10-08T07:45:15.594384+00:00",
+                      "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                      "contributions": [
+                        {
+                          "statement": "Synthetic demo contribution: implemented the portal.",
+                          "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                          "updated_at": "2026-10-08T07:45:15.594384+00:00"
+                        },
+                        {
+                          "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                          "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                          "updated_at": "2026-10-08T07:45:15.972111+00:00"
+                        },
+                        {
+                          "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                          "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                          "updated_at": "2026-10-08T07:45:16.296127+00:00"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "started_at": "2026-10-08T07:32:21.794185+00:00"
+            },
+            "abstract": "A synthetic demonstration of a secure academic project supervision portal, milestone evidence, independent assessment and confidential results.",
+            "document": null,
+            "group_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "keywords": [
+              "supervision",
+              "academic",
+              "demo"
+            ],
+            "group_name": "FYP Compass Demo Team",
+            "similarity": {
+              "method": "Token-set Jaccard internal comparison",
+              "status": "clear",
+              "threshold": 60,
+              "disclaimer": "Internal similarity screening is a review signal, not a plagiarism verdict.",
+              "percentage": 0,
+              "screened_at": "2026-10-08T07:32:21.477195+00:00",
+              "closest_title": null,
+              "closest_proposal_id": null
+            },
+            "submitted_at": "2026-10-08T07:32:20.491171+00:00"
+          }
+        ],
+        "session_name": "FYP Compass Hackathon Demo 2026",
+        "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+      },
+      "assessment": {
+        "results": [],
+        "actor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+        "defenses": [
+          {
+            "id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "fee_paid": true,
+            "location": "Synthetic Hackathon Demo Lab",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "examiner_one": "e5217a42-8d21-4e5e-8452-455218254bf5",
+            "examiner_two": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+            "scheduled_at": "2026-10-08T08:45:21.198+00:00",
+            "my_assessment": null,
+            "submitted_examiners": []
+          }
+        ],
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "title": "Synthetic Red Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "certified": null,
+            "milestones": [
+              {
+                "id": "3ca23152-82a0-48f6-9754-b17bce1dc3a4",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-09T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_marks": null
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "title": "Synthetic Amber Health Evidence",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "certified": null,
+            "milestones": [
+              {
+                "id": "005bd3b0-b619-46b5-aed0-b7b5c32177b3",
+                "name": "Synthetic health deadline",
+                "status": "not_started",
+                "deadline": "2026-10-12T04:12:10.242259+00:00",
+                "description": "Unsubmitted prepared evidence: upcoming yields Amber; overdue yields Red.",
+                "submissions": []
+              }
+            ],
+            "supervisor_marks": null
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "certified": "2026-10-08T07:45:21.325899+00:00",
+            "milestones": [
+              {
+                "id": "c3a9efda-1329-4515-9482-dc54aaecdaf6",
+                "name": "Demo evidence review",
+                "status": "accepted",
+                "deadline": "2026-10-09T07:32:21.794185+00:00",
+                "description": "Synthetic hackathon demonstration evidence only.",
+                "submissions": [
+                  {
+                    "id": "8aad6ef7-90b6-4dd4-8e94-ee1ed1c97454",
+                    "review": {
+                      "action": "needs_rework",
+                      "feedback": "Synthetic demonstration: add the remaining individual evidence.",
+                      "reviewed_at": "2026-10-08T07:45:11.467813+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-original.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-original.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:10.569134+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:10.569134+00:00"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "7ad76e86-abd3-4a5c-aeed-06b97f280a9b",
+                    "review": {
+                      "action": "accepted",
+                      "feedback": "All synthetic contribution evidence reviewed.",
+                      "reviewed_at": "2026-10-08T07:45:16.609219+00:00",
+                      "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+                    },
+                    "document": {
+                      "name": "cloud-demo-revision.pdf",
+                      "path": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9/6ef643f6-6a5f-4590-894d-a05a7e33dc00/c3a9efda-1329-4515-9482-dc54aaecdaf6/cloud-demo-revision.pdf",
+                      "size": 51
+                    },
+                    "submitted_at": "2026-10-08T07:45:15.594384+00:00",
+                    "submitted_by": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                    "contributions": [
+                      {
+                        "statement": "Synthetic demo contribution: implemented the portal.",
+                        "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                        "updated_at": "2026-10-08T07:45:15.594384+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                        "updated_at": "2026-10-08T07:45:15.972111+00:00"
+                      },
+                      {
+                        "statement": "Synthetic demo individual contribution: independently verified evidence.",
+                        "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                        "updated_at": "2026-10-08T07:45:16.296127+00:00"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "supervisor_marks": {
+              "progress": 12,
+              "proposal": 8,
+              "individual": [
+                {
+                  "mark": 15,
+                  "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+                },
+                {
+                  "mark": 12,
+                  "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8"
+                },
+                {
+                  "mark": 10,
+                  "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb"
+                }
+              ],
+              "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+              "updated_at": "2026-10-08T07:45:20.127031+00:00"
+            }
+          }
+        ],
+        "examiners": []
+      },
+      "health": {
+        "notices": [
+          {
+            "id": "07ca5208-c3ae-4ccf-b9ab-51a342034da4",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "report_id": "bb102b3f-e44b-4b32-9c7a-26e58d0f01dd",
+            "created_at": "2026-10-08T07:32:23.177134+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "73630096-bad2-49c1-88f5-2308da3aae0d",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "1a34f937-7c7e-4db8-9483-c1d72cdba851",
+            "created_at": "2026-10-08T07:37:56.916437+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "1822975b-745d-43a1-b50e-cb5d88de5909",
+            "body": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "34b67659-a415-4adb-b9ef-43b563cc2f2c",
+            "created_at": "2026-10-08T07:45:06.614924+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00"
+          },
+          {
+            "id": "3d8e8b26-68d5-4d86-aaa4-d7ead8fe51ef",
+            "body": "You have a project deadline approaching in the next few days. Please check in with your supervisor if you need support, clarification, or guidance on finalizing your submission.",
+            "level": "amber",
+            "read_by": [
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "report_id": "67ac6569-d256-443d-bedb-1df756c1b655",
+            "created_at": "2026-10-10T14:52:57.808854+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          },
+          {
+            "id": "270fd5b2-7fe5-4062-a18f-456ed5d30ddf",
+            "body": "You have an important deadline approaching in three days. Please reach out to your supervisor if you need support or guidance to complete your work on time. This is a synthetic demo notice.",
+            "level": "amber",
+            "read_by": [],
+            "report_id": "09d0cd1b-61a4-44cc-8d91-5462f3231d53",
+            "created_at": "2026-10-10T15:24:26.333284+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b"
+          }
+        ],
+        "reports": [
+          {
+            "id": "bb102b3f-e44b-4b32-9c7a-26e58d0f01dd",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "approved",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-08T07:32:22.844735+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "explanation": "Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.",
+            "reviewed_at": "2026-10-08T07:32:23.177134+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"6ef643f6-6a5f-4590-894d-a05a7e33dc00\"}"
+          },
+          {
+            "id": "1a34f937-7c7e-4db8-9483-c1d72cdba851",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "approved",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-08T07:37:56.679544+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "explanation": "Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.",
+            "reviewed_at": "2026-10-08T07:37:56.916437+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"6ef643f6-6a5f-4590-894d-a05a7e33dc00\"}"
+          },
+          {
+            "id": "34b67659-a415-4adb-b9ef-43b563cc2f2c",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "approved",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-08T07:45:06.246523+00:00",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "explanation": "Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.",
+            "reviewed_at": "2026-10-08T07:45:06.614924+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Demo evidence review: deadline 2026-10-09T07:32:21.794185+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"6ef643f6-6a5f-4590-894d-a05a7e33dc00\"}"
+          },
+          {
+            "id": "c2e686b0-89e3-4c8a-9b8a-eecb62a2243a",
+            "action": "Contact your supervisor and agree a recovery plan for the outstanding evidence.",
+            "source": "fallback",
+            "status": "rejected",
+            "message": "Project health is RED. Milestone evidence is overdue. Contact your supervisor and agree a recovery plan for the outstanding evidence.",
+            "version": 2,
+            "created_at": "2026-10-10T04:12:26.83042+00:00",
+            "project_id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "explanation": "Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.",
+            "reviewed_at": "2026-10-10T14:53:11.561039+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"MILESTONE_OVERDUE\", \"level\": \"red\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.\"}], \"version\": \"1\", \"project_id\": \"19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f\"}"
+          },
+          {
+            "id": "bcc94a24-d82b-4270-8cfa-e147235e70d9",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "rejected",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-10T10:08:43.086519+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "explanation": "Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.",
+            "reviewed_at": "2026-10-10T10:12:16.827177+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}"
+          },
+          {
+            "id": "0e164c8c-e6e1-4b42-b1fb-3dd6f2bed1a1",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "rejected",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-10T10:12:20.937126+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "explanation": "Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.",
+            "reviewed_at": "2026-10-10T10:15:24.488417+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}"
+          },
+          {
+            "id": "67ac6569-d256-443d-bedb-1df756c1b655",
+            "action": "Review the remaining requirements for the upcoming milestone, organize key deliverables, and seek guidance from your project supervisor to ensure smooth progress.",
+            "source": "gemini",
+            "status": "approved",
+            "message": "You have a project deadline approaching in the next few days. Please check in with your supervisor if you need support, clarification, or guidance on finalizing your submission.",
+            "version": 2,
+            "created_at": "2026-10-10T10:15:36.461565+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "explanation": "An upcoming academic project deadline is scheduled within the next three days, which may impact timely completion if remaining tasks are not prioritized.",
+            "reviewed_at": "2026-10-10T14:52:57.808854+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}"
+          },
+          {
+            "id": "0804d648-ebfb-4aa2-8db8-bed455cb88e6",
+            "action": "Contact your supervisor and agree a recovery plan for the outstanding evidence.",
+            "source": "fallback",
+            "status": "rejected",
+            "message": "Project health is RED. Milestone evidence is overdue. Contact your supervisor and agree a recovery plan for the outstanding evidence.",
+            "version": 2,
+            "created_at": "2026-10-10T14:53:55.20493+00:00",
+            "project_id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "explanation": "Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.",
+            "reviewed_at": "2026-10-12T05:04:26.366425+00:00",
+            "reviewer_id": null,
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"MILESTONE_OVERDUE\", \"level\": \"red\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.\"}], \"version\": \"1\", \"project_id\": \"19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f\"}"
+          },
+          {
+            "id": "3ec67cca-294d-472a-8f2b-052eac83edd2",
+            "action": "Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "source": "fallback",
+            "status": "rejected",
+            "message": "Project health is AMBER. A milestone deadline is approaching. Review upcoming deadlines and complete outstanding contributions or peer ratings.",
+            "version": 2,
+            "created_at": "2026-10-10T15:15:49.142125+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "explanation": "Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.",
+            "reviewed_at": "2026-10-10T15:20:51.844214+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}"
+          },
+          {
+            "id": "09d0cd1b-61a4-44cc-8d91-5462f3231d53",
+            "action": "Review the remaining requirements and consult your supervisor for guidance on prioritizing tasks. Create a focused plan to ensure all materials are ready for timely submission.",
+            "source": "gemini",
+            "status": "approved",
+            "message": "You have an important deadline approaching in three days. Please reach out to your supervisor if you need support or guidance to complete your work on time. This is a synthetic demo notice.",
+            "version": 2,
+            "created_at": "2026-10-10T15:21:16.991782+00:00",
+            "project_id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "explanation": "An upcoming project deadline is approaching within the next three days. This amber alert indicates that remaining tasks need immediate attention to stay on track.",
+            "reviewed_at": "2026-10-10T15:24:26.333284+00:00",
+            "reviewer_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+            "risk_fingerprint": "{\"rules\": [{\"code\": \"DEADLINE_UPCOMING\", \"level\": \"amber\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 is within three days.\"}], \"version\": \"1\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}"
+          }
+        ],
+        "actor_id": "4486e725-e0d8-423a-af89-59fc165838f8",
+        "projects": [
+          {
+            "id": "19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f",
+            "name": "Synthetic Red Health Team",
+            "title": "Synthetic Red Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [
+                {
+                  "code": "MILESTONE_OVERDUE",
+                  "level": "red",
+                  "evidence": "Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding."
+                }
+              ],
+              "fingerprint": "{\"rules\": [{\"code\": \"MILESTONE_OVERDUE\", \"level\": \"red\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-09T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.\"}], \"version\": \"2\", \"project_id\": \"19fa7e02-6dc7-47fb-ae00-2b1d4ce57f4f\"}",
+              "calculated_at": "2026-10-12T05:04:32.412+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "2882c4a7-cf9c-484f-9398-ca189e44871b",
+            "name": "Synthetic Amber Health Team",
+            "title": "Synthetic Amber Health Evidence",
+            "health": {
+              "level": "red",
+              "rules": [
+                {
+                  "code": "MILESTONE_OVERDUE",
+                  "level": "red",
+                  "evidence": "Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding."
+                }
+              ],
+              "fingerprint": "{\"rules\": [{\"code\": \"MILESTONE_OVERDUE\", \"level\": \"red\", \"evidence\": \"Synthetic health deadline: deadline 2026-10-12T04:12:10.242259+00:00 passed; acceptable evidence is still outstanding.\"}], \"version\": \"2\", \"project_id\": \"2882c4a7-cf9c-484f-9398-ca189e44871b\"}",
+              "calculated_at": "2026-10-12T05:04:32.412+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          },
+          {
+            "id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "name": "FYP Compass Demo Team",
+            "title": "FYP Compass Synthetic Demo Project",
+            "health": {
+              "level": "green",
+              "rules": [],
+              "fingerprint": "{\"rules\": [], \"version\": \"2\", \"project_id\": \"6ef643f6-6a5f-4590-894d-a05a7e33dc00\"}",
+              "calculated_at": "2026-10-12T05:04:32.412+00:00"
+            },
+            "prepared": false,
+            "member_ids": [
+              "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+              "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+              "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+            ],
+            "supervisor_id": "4486e725-e0d8-423a-af89-59fc165838f8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Demo Supervisor Two",
+      "workspace": {
+        "capacity": 2,
+        "proposals": [],
+        "session_name": "FYP Compass Hackathon Demo 2026",
+        "supervisor_id": "6af6925e-1925-4498-bec5-a823f2d3de0e"
+      },
+      "assessment": {
+        "results": [],
+        "actor_id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+        "defenses": [],
+        "projects": [],
+        "examiners": []
+      },
+      "health": {
+        "notices": [],
+        "reports": [],
+        "actor_id": "6af6925e-1925-4498-bec5-a823f2d3de0e",
+        "projects": []
+      }
+    },
+    {
+      "name": "Demo Supervisor Three",
+      "workspace": {
+        "capacity": 2,
+        "proposals": [],
+        "session_name": "FYP Compass Hackathon Demo 2026",
+        "supervisor_id": "1291fb51-babc-4ac7-b448-ffb18e514a47"
+      },
+      "assessment": {
+        "results": [],
+        "actor_id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+        "defenses": [],
+        "projects": [],
+        "examiners": []
+      },
+      "health": {
+        "notices": [],
+        "reports": [],
+        "actor_id": "1291fb51-babc-4ac7-b448-ffb18e514a47",
+        "projects": []
+      }
+    }
+  ],
+  "examiners": [
+    {
+      "name": "Examiner One",
+      "assessment": {
+        "results": [],
+        "actor_id": "e5217a42-8d21-4e5e-8452-455218254bf5",
+        "defenses": [
+          {
+            "id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "fee_paid": true,
+            "location": "Synthetic Hackathon Demo Lab",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "examiner_one": "e5217a42-8d21-4e5e-8452-455218254bf5",
+            "examiner_two": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+            "scheduled_at": "2026-10-08T08:45:21.198+00:00",
+            "my_assessment": {
+              "viva": [
+                {
+                  "mark": 20,
+                  "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+                },
+                {
+                  "mark": 18,
+                  "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8"
+                },
+                {
+                  "mark": 16,
+                  "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb"
+                }
+              ],
+              "report": 14,
+              "comments": "Independent synthetic demonstration assessment.",
+              "examiner": "e5217a42-8d21-4e5e-8452-455218254bf5",
+              "defense_id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+              "submitted_at": "2026-10-08T07:45:22.33632+00:00",
+              "implementation": 14
+            },
+            "submitted_examiners": []
+          }
+        ],
+        "projects": [],
+        "examiners": []
+      }
+    },
+    {
+      "name": "Examiner Two",
+      "assessment": {
+        "results": [],
+        "actor_id": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+        "defenses": [
+          {
+            "id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+            "title": "FYP Compass Synthetic Demo Project",
+            "members": [
+              {
+                "id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb",
+                "role": "student",
+                "full_name": "Student Three"
+              },
+              {
+                "id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8",
+                "role": "student",
+                "full_name": "Student Two"
+              },
+              {
+                "id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9",
+                "role": "student",
+                "full_name": "Student One"
+              }
+            ],
+            "fee_paid": true,
+            "location": "Synthetic Hackathon Demo Lab",
+            "project_id": "6ef643f6-6a5f-4590-894d-a05a7e33dc00",
+            "examiner_one": "e5217a42-8d21-4e5e-8452-455218254bf5",
+            "examiner_two": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+            "scheduled_at": "2026-10-08T08:45:21.198+00:00",
+            "my_assessment": {
+              "viva": [
+                {
+                  "mark": 20,
+                  "student_id": "69fbd47a-5313-4ccc-b4d5-1e3ec1f783f9"
+                },
+                {
+                  "mark": 18,
+                  "student_id": "688d5af0-89ce-4dce-8ca5-8737c4ecfdb8"
+                },
+                {
+                  "mark": 16,
+                  "student_id": "1ccc836a-7c94-44a3-a9a8-9e76904e39cb"
+                }
+              ],
+              "report": 14,
+              "comments": "Independent synthetic demonstration assessment.",
+              "examiner": "b5b7885e-93e3-4133-a7b9-014160ec779c",
+              "defense_id": "6b261ff6-3563-450b-97af-cf89fad7eb8a",
+              "submitted_at": "2026-10-08T07:45:22.950784+00:00",
+              "implementation": 14
+            },
+            "submitted_examiners": []
+          }
+        ],
+        "projects": [],
+        "examiners": []
+      }
+    }
+  ]
+}

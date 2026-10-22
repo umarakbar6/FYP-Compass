@@ -1,0 +1,45 @@
+.peer-page {
+  display: grid;
+  gap: 24px;
+}
+.peer-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 18px;
+  padding: 24px;
+  display: grid;
+  gap: 18px;
+}
+.peer-card h2 {
+  margin: 0;
+}
+.peer-card form {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border, #e2e8f0);
+}
+.peer-card label {
+  display: grid;
+  gap: 8px;
+  flex: 1;
+  color: var(--text, #182332);
+}
+.peer-card input,
+.peer-card select {
+  padding: 12px;
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 8px;
+  background: var(--surface, #fff);
+  color: inherit;
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  .peer-card form {
+    display: grid;
+  }
+  .peer-card {
+    padding: 18px;
+  }
+}

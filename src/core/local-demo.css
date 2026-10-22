@@ -1,0 +1,15 @@
+.demo-access select {
+  width: 100%;
+  margin: 10px 0 16px;
+  padding: 12px;
+  border: 1px solid var(--border, #d5deea);
+  border-radius: 9px;
+  background: #fff;
+  color: #182332;
+  font: inherit;
+  min-width: 0;
+}
+.demo-access > .button {
+  width: 100%;
+  margin-bottom: 12px;
+}

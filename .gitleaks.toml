@@ -1,0 +1,10 @@
+title = "FYP Compass secret guard"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact reviewed synthetic SQL identifier fragment and fixture path; no credentials"
+condition = "AND"
+paths = ['''(?:^|/)backend/local-tests/account-capacity-database\.test\.mjs$''']
+regexTarget = "match"
+regexes = ['''^auth\.users,fyp_ops_v1\.invites[ \t]*$''']

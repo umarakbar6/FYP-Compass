@@ -1,0 +1,16 @@
+-- Scoped compatibility fix for Supabase safeupdate; retains coordinator checks and locks.
+begin;
+create or replace function public.fyp_v2_core_configure(p_operation text,p_data jsonb) returns jsonb language plpgsql security definer set search_path='' as $$declare sid uuid;uid uuid;topicids uuid[];capacity int;begin
+perform fyp_core_v2.role('coordinator');perform fyp_core_v2.lock();if jsonb_typeof(p_data) is distinct from 'object' then raise exception 'Invalid configuration';end if;
+if p_operation='session' then if p_data->>'active'='true' then update fyp_core_v2.sessions set active=false where active;end if;insert into fyp_core_v2.sessions(name,active) values(p_data->>'name',coalesce((p_data->>'active')::boolean,false));
+elsif p_operation='activate_session' then sid:=(p_data->>'id')::uuid;if not exists(select 1 from fyp_core_v2.sessions where id=sid) then raise exception 'Session unavailable';end if;update fyp_core_v2.sessions set active=false where active;update fyp_core_v2.sessions set active=true where id=sid;
+elsif p_operation='topic' then insert into fyp_core_v2.topics(name) values(btrim(p_data->>'name'));
+elsif p_operation='enroll' then sid:=(p_data->>'session_id')::uuid;uid:=(p_data->>'profile_id')::uuid;if exists(select 1 from fyp_core_v2.members m join fyp_core_v2.groups g on g.id=m.group_id join fyp_core_v2.sessions s on s.id=g.session_id where m.student_id=uid and s.active and g.session_id<>sid) then raise exception 'Grouped students cannot change active enrollment';end if;insert into fyp_core_v2.participants values(uid,sid) on conflict(profile_id,session_id) do nothing;
+elsif p_operation='capacity' then sid:=(p_data->>'session_id')::uuid;uid:=(p_data->>'supervisor_id')::uuid;capacity:=(p_data->>'max_groups')::integer;if not exists(select 1 from public.fyp_profiles where id=uid and role::text='supervisor') then raise exception 'Supervisor required';end if;select coalesce(array_agg(value::text::uuid),'{}') into topicids from jsonb_array_elements_text(coalesce(p_data->'topic_ids','[]'));
+if exists(select 1 from unnest(topicids) x where not exists(select 1 from fyp_core_v2.topics where id=x)) or capacity<(select count(*) from fyp_core_v2.allocations a join fyp_core_v2.groups g on g.id=a.group_id where g.session_id=sid and supervisor_id=uid) then raise exception 'Invalid topics or capacity below current workload';end if;
+insert into fyp_core_v2.capacities values(sid,uid,capacity,topicids) on conflict(session_id,supervisor_id) do update set max_groups=excluded.max_groups,topic_ids=excluded.topic_ids;insert into fyp_core_v2.participants values(uid,sid) on conflict(profile_id,session_id) do nothing;
+elsif p_operation='template' then if p_data->>'name' is null or length(btrim(p_data->>'name')) not between 1 and 100 or length(coalesce(p_data->>'description',''))>4000 then raise exception 'Invalid milestone template';end if;insert into fyp_core_v2.templates(session_id,name,description,days) values((p_data->>'session_id')::uuid,btrim(p_data->>'name'),coalesce(p_data->>'description',''),(p_data->>'days')::integer);
+else raise exception 'Unknown configuration operation';end if;
+insert into fyp_core_v2.audit(actor,action,record_id,details) values(auth.uid(),'configuration_'||p_operation,coalesce(sid::text,'configuration'),p_data);return public.fyp_v2_core_configuration();end $$;
+
+commit;

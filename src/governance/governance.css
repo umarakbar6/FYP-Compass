@@ -1,0 +1,164 @@
+.governance-page {
+  display: grid;
+  gap: 22px;
+  max-width: 1180px;
+  margin: auto;
+}
+.governance-card {
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #dbe3ee);
+  border-radius: 18px;
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+.governance-section-title {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.governance-section-title svg {
+  color: #2478ad;
+  flex: 0 0 auto;
+}
+.governance-section-title h2,
+.governance-section-title p,
+.governance-record h3,
+.governance-record p {
+  margin: 0;
+}
+.governance-section-title p {
+  margin-top: 6px;
+  color: #526174;
+}
+.governance-project-picker {
+  font-weight: 700;
+  display: grid;
+  gap: 8px;
+  max-width: 560px;
+}
+.governance-project-picker select,
+.governance-form input,
+.governance-form select,
+.governance-form textarea,
+.governance-grid input,
+.governance-grid textarea,
+.rubric-row input {
+  padding: 12px;
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 9px;
+  background: #fff;
+  color: inherit;
+  width: 100%;
+  min-width: 0;
+}
+.governance-form {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  background: #f7fafc;
+  border-radius: 14px;
+}
+.governance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.governance-grid label,
+.rubric-row label {
+  display: grid;
+  gap: 7px;
+  font-weight: 650;
+}
+.governance-wide {
+  grid-column: 1/-1;
+}
+.governance-list {
+  display: grid;
+  gap: 14px;
+}
+.governance-record {
+  border: 1px solid #dce5ed;
+  border-radius: 14px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  overflow-wrap: anywhere;
+}
+.governance-record-heading,
+.rubric-component-heading,
+.governance-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.governance-record details summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.governance-meta {
+  color: #607083;
+  font-size: 14px;
+}
+.governance-success {
+  color: #12683f;
+  background: #e8f7ef;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+.rubric-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.rubric-summary article {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 16px;
+}
+.rubric-summary h3 {
+  margin-top: 0;
+}
+.rubric-summary li span {
+  display: block;
+  color: #5a6878;
+  margin-top: 3px;
+}
+.rubric-editor {
+  border-top: 1px solid #e1e8ef;
+  padding-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+.rubric-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.35fr 1.5fr auto;
+  gap: 10px;
+  align-items: end;
+}
+@media (max-width: 760px) {
+  .governance-grid,
+  .rubric-summary,
+  .rubric-row {
+    grid-template-columns: 1fr;
+  }
+  .governance-wide {
+    grid-column: auto;
+  }
+  .governance-card {
+    padding: 18px;
+  }
+}
+@media print {
+  .governance-form,
+  .governance-page button,
+  .rubric-editor {
+    display: none;
+  }
+  .governance-card,
+  .governance-record {
+    break-inside: avoid;
+  }
+}

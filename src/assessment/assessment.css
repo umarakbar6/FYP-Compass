@@ -1,0 +1,135 @@
+.assessment-page {
+  display: grid;
+  gap: 24px;
+}
+.assessment-card {
+  border: 1px solid var(--border, #dbe3ee);
+  background: var(--surface, #fff);
+  padding: 24px;
+  border-radius: 18px;
+  display: grid;
+  gap: 16px;
+}
+.assessment-card h2,
+.assessment-card h3,
+.assessment-card p {
+  margin: 0;
+}
+.assessment-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.assessment-fields label {
+  display: grid;
+  gap: 8px;
+}
+.assessment-fields input,
+.assessment-fields textarea,
+.assessment-fields select {
+  padding: 12px;
+  background: var(--surface, #fff);
+  color: inherit;
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 8px;
+  min-width: 0;
+}
+.assessment-fields textarea {
+  min-height: 84px;
+}
+.assessment-rubric-group {
+  border: 1px solid var(--border, #dbe3ee);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.assessment-rubric-group legend {
+  font-weight: 750;
+  padding: 0 6px;
+}
+.assessment-fields small {
+  color: #5a6878;
+  line-height: 1.45;
+}
+.assessment-checkbox {
+  display: flex !important;
+  align-items: center;
+}
+.assessment-peer-review {
+  display: grid;
+  gap: 12px;
+  border-bottom: 1px solid var(--border, #dbe3ee);
+  padding-bottom: 20px;
+}
+.assessment-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.assessment-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.assessment-result strong {
+  display: block;
+  font-size: 24px;
+  margin-top: 8px;
+}
+.assessment-success {
+  color: var(--green, #168050);
+}
+.assessment-card details form {
+  margin-top: 16px;
+}
+@media (max-width: 650px) {
+  .assessment-fields,
+  .assessment-result {
+    grid-template-columns: 1fr;
+  }
+  .assessment-card {
+    padding: 18px;
+  }
+}
+@media print {
+  .assessment-card form,
+  .assessment-actions,
+  .assessment-page .page-heading button {
+    display: none;
+  }
+  .assessment-card {
+    break-inside: avoid;
+  }
+}
+
+/* Checkbox size is independent of text-input padding; the label remains a full touch target. */
+.assessment-checkbox {
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.assessment-checkbox input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  min-height: 20px;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 20px;
+  accent-color: #297eb8;
+}
+
+/* Unbroken valid names must not expand grid cards or native select fields. */
+.assessment-page,
+.assessment-card {
+  min-width: 0;
+}
+.assessment-card {
+  overflow-wrap: anywhere;
+}
+.assessment-fields select {
+  width: 100%;
+  max-width: 100%;
+}

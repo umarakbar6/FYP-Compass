@@ -1,0 +1,12 @@
+-- Run in the Supabase SQL editor and export the single JSON result privately.
+-- Read-only metadata; does not change accounts, policies, tables or records.
+begin transaction read only;
+select jsonb_build_object(
+  'columns', (select coalesce(jsonb_agg(to_jsonb(c)), '[]'::jsonb) from (select table_name,column_name,data_type,is_nullable,column_default from information_schema.columns where table_schema='public' and table_name like 'fyp_%' order by table_name,ordinal_position) c),
+  'constraints', (select coalesce(jsonb_agg(to_jsonb(c)), '[]'::jsonb) from (select cl.relname as table_name,con.conname,pg_get_constraintdef(con.oid) as definition from pg_constraint con join pg_class cl on cl.oid=con.conrelid join pg_namespace n on n.oid=cl.relnamespace where n.nspname='public' and cl.relname like 'fyp_%') c),
+  'functions', (select coalesce(jsonb_agg(to_jsonb(f)), '[]'::jsonb) from (select p.proname,pg_get_function_identity_arguments(p.oid) as arguments,pg_get_functiondef(p.oid) as definition,has_function_privilege('anon',p.oid,'execute') as anon_execute,has_function_privilege('authenticated',p.oid,'execute') as authenticated_execute from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.prokind='f' and (p.proname like 'fyp_%' or p.proname in ('get_student_workspace','create_student_group','save_student_proposal','get_supervisor_workspace','review_supervisor_proposal','get_milestone_workspace','submit_student_milestone','save_milestone_contribution','review_supervisor_milestone','get_health_workspace','calculate_group_health','prepare_group_health_draft','save_group_health_draft','review_group_health','mark_health_notice_read'))) f),
+  'policies', (select coalesce(jsonb_agg(to_jsonb(p)), '[]'::jsonb) from (select schemaname,tablename,policyname,roles,cmd,qual,with_check from pg_policies where (schemaname='public' and tablename like 'fyp_%') or (schemaname='storage' and tablename='objects')) p),
+  'rls', (select coalesce(jsonb_agg(to_jsonb(r)), '[]'::jsonb) from (select c.relname,c.relrowsecurity,c.relforcerowsecurity from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relkind='r' and c.relname like 'fyp_%') r),
+  'storage', (select coalesce(jsonb_agg(to_jsonb(b)), '[]'::jsonb) from (select id,name,public,file_size_limit,allowed_mime_types from storage.buckets where id='fyp-submissions') b)
+) as integration_contract;
+commit;

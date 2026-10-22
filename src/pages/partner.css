@@ -1,0 +1,91 @@
+.partner-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.partner-report {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.partner-report dl {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border, #dbe2eb);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.partner-report dt {
+  font-weight: 600;
+}
+.partner-report dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.partner-report section {
+  min-width: 0;
+}
+.partner-dashboard,
+.print-report,
+.partner-notice {
+  margin-bottom: 20px;
+}
+.partner-notice p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.partner-report td {
+  overflow-wrap: anywhere;
+  max-width: 380px;
+}
+@media (max-width: 640px) {
+  .partner-report dl {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+@media print {
+  .sidebar,
+  .app-header,
+  .page-heading,
+  .partner-actions,
+  .partner-dashboard,
+  .sidebar-backdrop,
+  .foundation-note,
+  .skip-link {
+    display: none !important;
+  }
+  .workspace-body {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .print-report {
+    color: #111 !important;
+    background: white !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .print-report h3,
+  .print-report dl {
+    break-inside: avoid;
+  }
+  .print-report .table-scroll {
+    overflow: visible !important;
+  }
+  .print-report table {
+    min-width: 0 !important;
+    width: 100% !important;
+    font-size: 9pt;
+  }
+  .print-report th,
+  .print-report td {
+    color: #111 !important;
+    background: white !important;
+    white-space: normal !important;
+    padding: 5px !important;
+  }
+}
