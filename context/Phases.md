@@ -18,3 +18,5 @@ Code availability is separate from live acceptance. Run CI for the exact checkou
 The complete original brief is preserved in `docs/ORIGINAL-MVP-PRD.md`; its ten detailed procedures are in `docs/ORIGINAL-TEN-ACCEPTANCE-CASES.md`. Acceptance now binds those exact procedures, including the two-point topic cap, first-choice versus third-choice competition, distinct Late/Overdue evidence and edited supervisor notices.
 
 Corrections also cover dashboard text contrast, an ambiguous browser-test selector, complete local RPC availability, session revocation, document attestations and shared AI persistence. Test results belong to the exact tested source and dated verification artifacts; source completeness alone is never a passing acceptance result.
+
+Final print acceptance verifies the actual report button and a PDF containing every synthetic student total. A print-specific heading, session metadata and compact paper layout are included.

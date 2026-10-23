@@ -53,23 +53,21 @@ it('a switched session or stale approving view cannot dispatch another account r
 });
 it('renders stored injection text safely and requires explicit confirmation without offering student review controls', async () => {
   const malicious = '<img src=x onerror=alert(1)>';
-  const fetcher = vi
-    .fn()
-    .mockResolvedValue({
-      ok: true,
-      json: async () => [
-        {
-          id: 'request-one',
-          kind: 'deletion',
-          detail: malicious,
-          status: 'requested',
-          response: '',
-          version: 1,
-          created_at: '2026-10-16T01:00:00Z',
-          requester_name: 'Student One',
-        },
-      ],
-    });
+  const fetcher = vi.fn().mockResolvedValue({
+    ok: true,
+    json: async () => [
+      {
+        id: 'request-one',
+        kind: 'deletion',
+        detail: malicious,
+        status: 'requested',
+        response: '',
+        version: 1,
+        created_at: '2026-10-16T01:00:00Z',
+        requester_name: 'Student One',
+      },
+    ],
+  });
   vi.stubGlobal('fetch', fetcher);
   const events = userEvent.setup();
   const { container } = render(<PrivacyRequests />);

@@ -13,3 +13,5 @@ Operational failures use sanitized messages and references, not credentials or r
 The internal service adapter resolves overloaded SQL functions against the actual named arguments. It rejects an unsupported signature instead of silently dropping data; this fixes private AI-draft persistence through the local bridge. Consent failures stop before a provider call, and malformed output marks a reserved run failed with no draft.
 
 Local startup verifies the installed schema digest. A mismatched old data directory stops with guidance rather than resetting its contents. Port conflicts also stop; the start command does not stop another application or connect silently to an unrelated backend. Existing data and historical allocation decisions are preserved during the additive PRD correction.
+
+Private database exports are bound to the initiating coordinator and discarded after account change or unmount. Complete report print verification is a separate gate, not inferred from the summary or SQL totals.

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../auth/AuthProvider';
 import { Button, ErrorMessage } from '../components/ui';
 import { ReportsPage as DemoReports } from '../core/CorePages';
+import { loadCoreReport } from '../core/api';
 type Row = {
   id: string;
   name: string;
@@ -21,7 +23,8 @@ type Page = {
   sql_totals: Record<string, number>;
 };
 export function ReportExplorer() {
-  return supabase ? <ConnectedReport /> : <DemoReports />;
+  const [params] = useSearchParams();
+  return supabase && params.get('view') !== 'full' ? <ConnectedReport /> : <DemoReports />;
 }
 function ConnectedReport() {
   const { user } = useAuth(),
@@ -55,16 +58,21 @@ function ConnectedReport() {
     }
   }
   useEffect(() => {
+    actor.current = user?.id;
     setPage(null);
     void load('', null);
+    return () => {
+      actor.current = undefined;
+    };
   }, [user?.id]);
   async function exportFull() {
-    if (!supabase) return;
+    if (!supabase || !user || busy) return;
+    const owner = actor.current;
     setBusy(true);
     setError('');
     try {
-      const { data, error } = await supabase.rpc('fyp_v2_core_accreditation');
-      if (error || !data) throw Error('Unable to export accreditation evidence.');
+      const data = await loadCoreReport(user);
+      if (actor.current !== owner) return;
       const blob = URL.createObjectURL(
         new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }),
       );
@@ -74,9 +82,10 @@ function ConnectedReport() {
       a.click();
       setTimeout(() => URL.revokeObjectURL(blob), 1000);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : 'Export unavailable.');
+      if (actor.current === owner)
+        setError(cause instanceof Error ? cause.message : 'Export unavailable.');
     } finally {
-      setBusy(false);
+      if (actor.current === owner) setBusy(false);
     }
   }
   return (
@@ -145,11 +154,19 @@ function ConnectedReport() {
       >
         Next page
       </Button>
+      {page && (
+        <Link
+          className="button button-primary"
+          to={'/coordinator/reports?view=full&session=' + encodeURIComponent(session)}
+        >
+          Open full printable report
+        </Link>
+      )}
       <Button disabled={busy} onClick={() => window.print()}>
-        Print this page
+        Print current summary
       </Button>
       <Button disabled={busy || !page} onClick={() => void exportFull()}>
-        Download private full evidence
+        Download database evidence (JSON)
       </Button>
       <p>
         The full export contains private academic records. Share it only with authorized reviewers.

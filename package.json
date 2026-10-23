@@ -38,7 +38,8 @@
     "configure:deployment": "node scripts/configure-deployment.mjs",
     "test:email": "node --test backend/email/*.test.mjs",
     "security:check": "node scripts/security-check.mjs",
-    "test:local-browser": "node e2e/connected-local-audit.cjs"
+    "test:local-browser": "node e2e/connected-local-audit.cjs",
+    "test:report-print": "node e2e/report-print-check.cjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

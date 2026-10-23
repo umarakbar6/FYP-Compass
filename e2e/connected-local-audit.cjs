@@ -15,6 +15,7 @@ async function settle(page) {
   await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
 }
 async function login(page, account) {
+  page.setDefaultNavigationTimeout(120000);
   await page.goto(base + '/login');
   await page.getByLabel('Demo account', { exact: true }).selectOption(account.id);
   await page.getByRole('button', { name: 'Enter local backend demo', exact: true }).click();
@@ -30,7 +31,7 @@ async function login(page, account) {
       student: ['dashboard', 'group', 'proposal', 'milestones', 'health', 'notices', 'peers', 'results'],
       supervisor: ['dashboard', 'groups', 'proposals', 'milestones', 'health', 'notices', 'assessment', 'defenses'],
       examiner: ['dashboard', 'defenses', 'assessment'],
-      coordinator: ['dashboard', 'configuration', 'matching', 'defenses', 'assessment', 'reports', 'results'],
+      coordinator: ['dashboard', 'configuration', 'matching', 'defenses', 'assessment', 'reports', 'reports?view=full', 'results'],
     };
     const advanced = {
       student: ['governance', 'help', 'privacy-requests'],

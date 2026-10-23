@@ -10,13 +10,11 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllGlobals());
 it('binds the email request to the verified current actor token and the same-origin API', async () => {
-  const request = vi
-    .fn()
-    .mockResolvedValue({
-      ok: true,
-      status: 200,
-      json: async () => ({ status: 'sent', reference: id }),
-    });
+  const request = vi.fn().mockResolvedValue({
+    ok: true,
+    status: 200,
+    json: async () => ({ status: 'sent', reference: id }),
+  });
   vi.stubGlobal('fetch', request);
   await expect(
     deliverEmail({ type: 'delivery_test', confirm: true, request_id: id }, id),
@@ -53,13 +51,11 @@ it.each([
 it('rejects a malformed receipt rather than displaying delivery success', async () => {
   vi.stubGlobal(
     'fetch',
-    vi
-      .fn()
-      .mockResolvedValue({
-        ok: true,
-        status: 200,
-        json: async () => ({ status: 'sent', reference: 'invalid' }),
-      }),
+    vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ status: 'sent', reference: 'invalid' }),
+    }),
   );
   await expect(deliverEmail({}, id)).rejects.toThrow('could not be confirmed');
 });

@@ -32,7 +32,9 @@ if (!process.argv.includes('--verify-existing')) {
     assert.equal(r.status, 0, file + ' failed');
   }
 }
-const frontendReports = ['frontend-final.json', 'frontend-registration.json']
+const frontendReports = fs
+  .readdirSync(dir)
+  .filter((name) => /^frontend-.*\.json$/.test(name))
   .filter((name) => fs.existsSync(path.join(dir, name)))
   .map((name) => JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8')));
 const executed = new Map();
@@ -41,7 +43,9 @@ for (const report of frontendReports) {
   for (const result of report.testResults) {
     assert.equal(result.status, 'passed');
     assert(result.assertionResults.every((test) => test.status === 'passed'));
-    executed.set(result.name, result);
+    const key = result.name.replaceAll('\\', '/').split('/src/test/').at(-1);
+    const previous = executed.get(key);
+    if (!previous || result.startTime >= previous.startTime) executed.set(key, result);
   }
 }
 const testResults = [...executed.values()];
@@ -86,12 +90,12 @@ const database =
     ? '\n' + fs.readFileSync(path.join(dir, 'original-prd-new-cases.txt'), 'utf8')
     : '');
 const http = fs.readFileSync(path.join(dir, 'sdk-http-after-fix.txt'), 'utf8');
-const databasePasses = [...database.matchAll(/ℹ pass (\d+)/g)].reduce(
+const databasePasses = [...database.matchAll(/\u2139 pass (\d+)/g)].reduce(
   (n, m) => n + Number(m[1]),
   0,
 );
 assert(databasePasses >= 56, 'Original database coverage was lost');
-assert(!/ℹ fail [1-9]/.test(database), 'Database suite contains failures');
+assert(!/\u2139 fail [1-9]/.test(database), 'Database suite contains failures');
 assert.match(database, /fail 0/);
 assert.match(http, /pass 10/);
 assert.match(http, /fail 0/);
@@ -202,7 +206,10 @@ const geminiVerified =
       Date.now() - providerTime < 6 * 60 * 60 * 1000));
 const matrix = names.map(([name, evidence], index) => {
   for (const item of evidence)
-    assert(database.includes('✔ ' + item + ' ('), `Missing executed passing assertion: ${item}`);
+    assert(
+      database.includes('\u2714 ' + item + ' ('),
+      `Missing executed passing assertion: ${item}`,
+    );
   return {
     case: index + 1,
     name,
@@ -221,24 +228,31 @@ const matrix = names.map(([name, evidence], index) => {
   };
 });
 const browserRuns = ['pdf-review-e2e.json', 'pdf-review-firefox-final.json']
-  .map(name => ({ name, file: path.join(root, 'handover/verification', name) }))
-  .filter(run => fs.existsSync(run.file))
-  .map(run => ({ name: run.name, data: JSON.parse(fs.readFileSync(run.file, 'utf8')) }));
+  .map((name) => ({ name, file: path.join(root, 'handover/verification', name) }))
+  .filter((run) => fs.existsSync(run.file))
+  .map((run) => ({ name: run.name, data: JSON.parse(fs.readFileSync(run.file, 'utf8')) }));
 if (browser) {
   const completed = new Map();
   function collect(suites) {
     for (const suite of suites) {
-      for (const spec of suite.specs || []) for (const test of spec.tests || [])
-        completed.set(test.projectId + ':' + spec.id, { title: spec.title, ...test });
+      for (const spec of suite.specs || [])
+        for (const test of spec.tests || [])
+          completed.set(test.projectId + ':' + spec.id, { title: spec.title, ...test });
       collect(suite.suites || []);
     }
   }
-  for (const run of browserRuns) collect(run.data.suites);
+  const primaryTime = new Date(browserRuns[0].data.stats.startTime).getTime();
+  for (const run of browserRuns)
+    if (new Date(run.data.stats.startTime).getTime() >= primaryTime) collect(run.data.suites);
   assert.equal(completed.size, 36, 'Every three-engine browser case must execute');
   for (const name of ['chromium', 'firefox', 'webkit'])
-    assert.equal([...completed.values()].filter(test => test.projectId === name).length, 12);
+    assert.equal([...completed.values()].filter((test) => test.projectId === name).length, 12);
   for (const test of completed.values()) {
-    assert.equal(test.status, 'expected', 'Browser case did not pass: ' + test.projectId + ' ' + test.title);
+    assert.equal(
+      test.status,
+      'expected',
+      'Browser case did not pass: ' + test.projectId + ' ' + test.title,
+    );
     assert.equal(test.results.at(-1).status, 'passed');
   }
   matrix[9].responsiveChecks = 3;
@@ -253,6 +267,25 @@ assert.equal(workflow.checks.length, 9);
 const connected = JSON.parse(fs.readFileSync(path.join(dir, 'local-browser-audit.json'), 'utf8'));
 assert.equal(connected.allChecksPassed, true, 'Connected local pages and refresh checks must pass');
 assert.equal(connected.runtimeErrors.length, 0);
+const printed = JSON.parse(fs.readFileSync(path.join(dir, 'report-print.json'), 'utf8'));
+assert.equal(
+  printed.passed,
+  true,
+  'The complete report must print with all expected student totals',
+);
+const reportHash = crypto
+  .createHash('sha256')
+  .update(
+    ['src/operations/ReportExplorer.tsx', 'src/core/CorePages.tsx', 'src/assessment/assessment.css']
+      .map((name) => fs.readFileSync(path.join(root, name)))
+      .join(''),
+  )
+  .digest('hex');
+assert.equal(
+  printed.reportImplementationSha256,
+  reportHash,
+  'Print evidence belongs to different report source',
+);
 const result = {
   checkedAt: new Date().toISOString(),
   specification:
@@ -262,13 +295,14 @@ const result = {
   database: databasePasses,
   sdkHTTP: 10,
   frontendRawReports: frontendReports.length,
-  browserRuns: browserRuns.map(run => ({report: run.name, stats: run.data.stats})),
+  browserRuns: browserRuns.map((run) => ({ report: run.name, stats: run.data.stats })),
   connectedBrowserChecks: connected.functionalChecks,
   connectedPages: { core: connected.corePages, advanced: connected.advancedPages },
   functionalCasesPassed: 10,
+  completeReportPrintVerified: true,
   allResponsiveEvidencePresent: Boolean(browser),
   matrix,
 };
 fs.writeFileSync(path.join(dir, 'ten-mvp-cases.json'), JSON.stringify(result, null, 2) + '\n');
-console.log(matrix.map((x) => `Case ${x.case}: ${x.status} — ${x.name}`).join('\n'));
+console.log(matrix.map((x) => `Case ${x.case}: ${x.status} - ${x.name}`).join('\n'));
 if (matrix.some((x) => x.status.startsWith('PARTIAL'))) process.exitCode = 1;

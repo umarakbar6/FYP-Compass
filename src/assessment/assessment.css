@@ -133,3 +133,69 @@
   width: 100%;
   max-width: 100%;
 }
+
+.accreditation-print-heading {
+  display: none;
+}
+@media print {
+  body:has(.accreditation-report),
+  body:has(.accreditation-report) .app-layout,
+  body:has(.accreditation-report) .workspace-body,
+  body:has(.accreditation-report) .page-content {
+    background: #fff !important;
+    color: #162b3a !important;
+  }
+  body:has(.accreditation-report) .page-content {
+    padding: 0 !important;
+  }
+  body:has(.accreditation-report) .workspace-footer,
+  .accreditation-report-controls {
+    display: none !important;
+  }
+  .accreditation-print-heading {
+    display: block !important;
+    border-bottom: 2px solid #162b3a;
+    padding-bottom: 8pt;
+  }
+  .accreditation-print-heading h1 {
+    font-size: 20pt;
+    margin: 5pt 0;
+  }
+  .accreditation-print-heading p {
+    margin: 2pt 0;
+  }
+  .accreditation-report {
+    font:
+      10pt/1.35 Arial,
+      sans-serif;
+    gap: 7pt;
+  }
+  .accreditation-report .assessment-card {
+    color: #162b3a !important;
+    background: #fff !important;
+    border: 0.7pt solid #c7d1db;
+    border-radius: 4pt;
+    box-shadow: none !important;
+    padding: 8pt;
+    gap: 4pt;
+  }
+  .accreditation-report .assessment-card h2 {
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  .accreditation-report .assessment-card h3 {
+    font-size: 10pt;
+    font-weight: 700;
+  }
+  .accreditation-report .assessment-result {
+    gap: 8pt;
+  }
+  .accreditation-report .assessment-result > div {
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+  .accreditation-report .assessment-result strong {
+    font-size: 15pt;
+  }
+}

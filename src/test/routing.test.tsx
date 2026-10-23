@@ -5,6 +5,16 @@ import { AuthProvider } from '../auth/AuthProvider';
 import { PortalRoutes } from '../App';
 import { roles, roleLabel } from '../types/shared';
 vi.mock('../lib/supabase', () => ({ supabase: null, demoEnabled: true, backendError: null }));
+const features = vi.hoisted(() => ({ core: false }));
+vi.mock('../lib/backend-version', async (original) => ({
+  ...(await original<typeof import('../lib/backend-version')>()),
+  get coreV2() {
+    return features.core;
+  },
+}));
+beforeEach(() => {
+  features.core = false;
+});
 function portal(path = '/login') {
   return render(
     <MemoryRouter initialEntries={[path]}>
@@ -38,6 +48,16 @@ describe('role routing and local demo sessions', () => {
     portal('/student/dashboard');
     expect(await screen.findByRole('heading', { name: 'Welcome back.' })).toBeInTheDocument();
   });
+  it('opens the full coordinator report and offers a return to its summary', async () => {
+    features.core = true;
+    sessionStorage.setItem('fyp-compass.demo-role', 'coordinator');
+    portal('/coordinator/reports?view=full');
+    expect(
+      await screen.findByRole('heading', { name: 'Accreditation report' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Back to report summary' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Print / save PDF' })).toBeInTheDocument();
+  });
   it('opens student notices and returns to the overview', async () => {
     sessionStorage.setItem('fyp-compass.demo-role', 'student');
     portal('/student/notices');
@@ -64,6 +84,7 @@ it.each([
   '/student/configuration',
   '/student/matching',
   '/student/reports',
+  '/student/reports?view=full',
   '/student/health',
   '/supervisor/configuration',
   '/supervisor/matching',
