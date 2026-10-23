@@ -4,6 +4,7 @@ const auth = vi.hoisted(() => ({
   signUp: vi.fn(),
   resend: vi.fn(),
   resetPasswordForEmail: vi.fn(),
+  verifyOtp: vi.fn(),
 }));
 vi.mock('../lib/supabase', () => ({ supabase: { auth }, demoEnabled: false }));
 vi.mock('../lib/deployment', () => ({
@@ -17,6 +18,10 @@ beforeEach(() => {
   auth.signUp.mockResolvedValue({ data: { session: null }, error: null });
   auth.resend.mockResolvedValue({ error: null });
   auth.resetPasswordForEmail.mockResolvedValue({ error: null });
+  auth.verifyOtp.mockResolvedValue({
+    data: { session: {}, user: { email_confirmed_at: '2026-10-23' } },
+    error: null,
+  });
 });
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -29,6 +34,23 @@ const valid = {
   confirmPassword: 'A strong unique pass42!',
   acceptedTerms: true,
 };
+it('email-code confirmation requires CAPTCHA proof and propagates it without privilege fields', async () => {
+  const { verifyStudentEmailCode } = await import('../auth/registration');
+  await expect(verifyStudentEmailCode(valid.email, '123456')).rejects.toThrow(
+    'Complete the security verification',
+  );
+  await expect(verifyStudentEmailCode(valid.email, '123456', 'x'.repeat(2049))).rejects.toThrow(
+    'Complete the security verification',
+  );
+  expect(auth.verifyOtp).not.toHaveBeenCalled();
+  await verifyStudentEmailCode(valid.email, '123456', 'fresh-verification-proof');
+  expect(auth.verifyOtp).toHaveBeenCalledWith({
+    email: valid.email,
+    token: '123456',
+    type: 'signup',
+    options: { captchaToken: 'fresh-verification-proof' },
+  });
+});
 it('configured CAPTCHA rejects missing and oversized tokens before signup or resend', async () => {
   const { registerStudent, resendStudentConfirmation } = await import('../auth/registration');
   await expect(registerStudent(valid)).rejects.toThrow('Complete the security verification');

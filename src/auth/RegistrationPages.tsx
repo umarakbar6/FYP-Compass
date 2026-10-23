@@ -8,6 +8,7 @@ import {
   registerStudent,
   RegistrationRequestError,
   resendStudentConfirmation,
+  verifyStudentEmailCode,
 } from './registration';
 import { supabase } from '../lib/supabase';
 import { dashboardPath } from '../types/shared';
@@ -127,6 +128,10 @@ export function StudentRegistrationPage() {
             </p>
             <p>
               Check your spam folder as well. Keep this page open if you need to resend the email.
+            </p>
+            <p>
+              If your email app does not open the button,{' '}
+              <Link to="/auth/confirm">enter the verification code from your email</Link>.
             </p>
             <Turnstile action="resend" onToken={setCaptchaToken} revision={captchaRevision} />
             <Button
@@ -267,20 +272,118 @@ export function StudentRegistrationPage() {
 
 export function ConfirmStudentEmail() {
   const { user, loading, error } = useAuth();
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaRevision, setCaptchaRevision] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const [verificationError, setVerificationError] = useState('');
+  const [verified, setVerified] = useState(false);
+  const [retryAfter, setRetryAfter] = useState(0);
+  const [secondsRemaining, setSecondsRemaining] = useState(0);
+  const lock = useRef(false);
+  useEffect(() => {
+    if (!retryAfter) return;
+    const tick = () =>
+      setSecondsRemaining(Math.max(0, Math.ceil((retryAfter - Date.now()) / 1000)));
+    tick();
+    const interval = window.setInterval(tick, 1000);
+    return () => window.clearInterval(interval);
+  }, [retryAfter]);
   const failedLink =
     new URLSearchParams(window.location.hash.slice(1)).has('error') ||
     new URLSearchParams(window.location.search).has('error');
   if (loading && !failedLink) return <LoadingState label="Verifying your emailâ€¦" />;
   if (user && !failedLink) return <Navigate to={dashboardPath(user.role)} replace />;
+  async function verify(event: FormEvent) {
+    event.preventDefault();
+    if (lock.current || Date.now() < retryAfter || (authCaptchaRequired && !captchaToken)) return;
+    lock.current = true;
+    setBusy(true);
+    setVerificationError('');
+    try {
+      await verifyStudentEmailCode(email, code, captchaToken || undefined);
+      setVerified(true);
+    } catch (cause) {
+      setVerificationError(
+        cause instanceof Error ? cause.message : 'Email verification is unavailable.',
+      );
+      if (cause instanceof RegistrationRequestError && cause.retryDelaySeconds)
+        setRetryAfter(Date.now() + cause.retryDelaySeconds * 1000);
+    } finally {
+      setCode('');
+      setCaptchaToken('');
+      setCaptchaRevision((value) => value + 1);
+      lock.current = false;
+      setBusy(false);
+    }
+  }
   return (
-    <main className="engagement-page engagement-card">
+    <main className="engagement-page engagement-card email-confirmation-page">
+      <Link to="/" aria-label="FYP Compass home">
+        <Brand />
+      </Link>
       <h1>{failedLink ? 'This verification link is unavailable' : 'Email verification'}</h1>
       <p>
         {failedLink
           ? 'The link may have expired or already been used. Sign in if your email is already verified, or request another verification email.'
-          : 'If you have verified your email, sign in to open your student workspace. Otherwise, open the verification link sent to your inbox.'}
+          : 'Open the confirmation link in your latest email, or enter its verification code below. If your email is already verified, sign in.'}
       </p>
       {error && <ErrorMessage message={error} />}
+      {verified ? (
+        <p role="status">Your email is verified. You can now sign in to your student workspace.</p>
+      ) : (
+        <form onSubmit={verify}>
+          <h2>Verify with an email code</h2>
+          <p>
+            Use the code in your latest FYP Compass confirmation email. Never share it with anyone.
+          </p>
+          <label>
+            Email address
+            <input
+              type="email"
+              autoComplete="email"
+              maxLength={254}
+              required
+              disabled={busy}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
+          <label>
+            Email verification code
+            <input
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              pattern="[0-9]{6,10}"
+              minLength={6}
+              maxLength={10}
+              required
+              disabled={busy}
+              value={code}
+              onChange={(event) => setCode(event.target.value)}
+            />
+          </label>
+          <Turnstile action="signup" onToken={setCaptchaToken} revision={captchaRevision} />
+          <Button
+            type="submit"
+            disabled={
+              busy ||
+              secondsRemaining > 0 ||
+              !/^\d{6,10}$/.test(code.trim()) ||
+              (authCaptchaRequired && !captchaToken)
+            }
+          >
+            {busy
+              ? 'Verifying email...'
+              : secondsRemaining > 0
+                ? `Retry available in ${secondsRemaining}s`
+                : 'Confirm email'}
+          </Button>
+          {verificationError && <ErrorMessage message={verificationError} />}
+        </form>
+      )}
       <p>
         <Link to="/login">Sign in</Link> Â·{' '}
         <Link to="/register">Register or resend verification</Link>
