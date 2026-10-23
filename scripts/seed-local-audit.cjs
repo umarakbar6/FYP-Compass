@@ -2,7 +2,12 @@
 const fs=require('node:fs'),path=require('node:path'),{createRequire}=require('node:module'),assert=require('node:assert/strict');
 const root=process.cwd(),ref='loopback-isolated-audit';
 const {createClient}=createRequire(path.join(root,'package.json'))('@supabase/supabase-js');
-const env={SUPABASE_URL:'http://127.0.0.1:54329',SUPABASE_ANON_KEY:'local-demo-public-key'};
+const api=process.env.FYP_LOCAL_API_URL||'http://127.0.0.1:54329';
+const parsed=new URL(api);
+assert.equal(parsed.protocol,'http:');
+assert(['127.0.0.1','localhost'].includes(parsed.hostname),'Synthetic demo seeding is loopback-only');
+assert.equal(parsed.pathname,'/');
+const env={SUPABASE_URL:parsed.origin,SUPABASE_ANON_KEY:'local-demo-public-key'};
 (async()=>{const response=await fetch(env.SUPABASE_URL+'/local-demo/accounts');assert.equal(response.status,200);const directory=await response.json();assert.equal(directory.local_only,true);const plan={accounts:directory.accounts};assert.equal(plan.accounts.length,9);assert(plan.accounts.every(a=>/^00000000-0000-4000-8000-[0-9]{12}$/.test(a.id)));
 const results=[],clients={},ids={};let stage='login';
 async function rpc(c,name,args){const r=await c.rpc(name,args);if(r.error)throw new Error(name+': '+r.error.code+' '+r.error.message);return r.data;}

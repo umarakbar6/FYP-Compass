@@ -10,7 +10,7 @@ const source = (name) => {
 };
 for (const [target, names] of [
   ['backend/INSTALL-PRODUCTION.sql', order],
-  ['backend/INSTALL-ALL-V2.sql', order.slice(0, 8)],
+  ['backend/INSTALL-ALL-V2.sql', [...order.slice(0, 8), '202610230001_prd_matching_cap.sql']],
 ]) {
   const out =
     '-- GENERATED from canonical supabase/migrations. Do not hand-edit.\n-- Fresh installation ONLY; never replay foundations on an existing live database.\nbegin;\n' +

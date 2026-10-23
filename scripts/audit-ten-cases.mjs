@@ -32,7 +32,30 @@ if (!process.argv.includes('--verify-existing')) {
     assert.equal(r.status, 0, file + ' failed');
   }
 }
-const frontend = JSON.parse(fs.readFileSync(path.join(dir, 'frontend-final.json'), 'utf8'));
+const frontendReports = ['frontend-final.json', 'frontend-registration.json']
+  .filter((name) => fs.existsSync(path.join(dir, name)))
+  .map((name) => JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8')));
+const executed = new Map();
+for (const report of frontendReports) {
+  assert.equal(report.numFailedTests, 0, 'A frontend assertion failed');
+  for (const result of report.testResults) {
+    assert.equal(result.status, 'passed');
+    assert(result.assertionResults.every((test) => test.status === 'passed'));
+    executed.set(result.name, result);
+  }
+}
+const testResults = [...executed.values()];
+const frontend = {
+  success: true,
+  testResults,
+  startTime: Math.min(...frontendReports.map((report) => report.startTime)),
+  numTotalTests: testResults.reduce((sum, file) => sum + file.assertionResults.length, 0),
+  numPassedTests: testResults.reduce(
+    (sum, file) => sum + file.assertionResults.filter((test) => test.status === 'passed').length,
+    0,
+  ),
+  numFailedTests: 0,
+};
 assert.equal(frontend.success, true, 'Frontend regressions must pass');
 const expectedTestFiles = fs
   .readdirSync(path.join(root, 'src/test'), { recursive: true })
@@ -57,7 +80,11 @@ assert(
   frontend.testResults.every((x) => x.status === 'passed'),
   'A test worker failed',
 );
-const database = fs.readFileSync(path.join(dir, 'database.txt'), 'utf8');
+const database =
+  fs.readFileSync(path.join(dir, 'database.txt'), 'utf8') +
+  (fs.existsSync(path.join(dir, 'original-prd-new-cases.txt'))
+    ? '\n' + fs.readFileSync(path.join(dir, 'original-prd-new-cases.txt'), 'utf8')
+    : '');
 const http = fs.readFileSync(path.join(dir, 'sdk-http-after-fix.txt'), 'utf8');
 const databasePasses = [...database.matchAll(/ℹ pass (\d+)/g)].reduce(
   (n, m) => n + Number(m[1]),
@@ -66,7 +93,7 @@ const databasePasses = [...database.matchAll(/ℹ pass (\d+)/g)].reduce(
 assert(databasePasses >= 56, 'Original database coverage was lost');
 assert(!/ℹ fail [1-9]/.test(database), 'Database suite contains failures');
 assert.match(database, /fail 0/);
-assert.match(http, /pass 4/);
+assert.match(http, /pass 10/);
 assert.match(http, /fail 0/);
 const names = [
   [
@@ -78,7 +105,8 @@ const names = [
   [
     'Preference-First Matching',
     [
-      'preference-first rounds prevent stronger-topic second choices displacing first choices',
+      'original PRD first preference with zero tags defeats third preference with three tags',
+      'original PRD caps three shared tags at two points and records the repeatable seeded lottery',
       'stored seed repeats exact ties, capacities never overflow and manual changes need a reason',
     ],
   ],
@@ -93,6 +121,7 @@ const names = [
     'Proposal, Similarity and Milestones',
     [
       'similarity requires human justification and approval creates one milestone plan',
+      'original PRD late submitted evidence and a separate overdue milestone remain distinct',
       'full group/proposal/matching/rework/contribution/health/assessment/result workflow works in PostgreSQL',
     ],
   ],
@@ -107,6 +136,7 @@ const names = [
     'Rule-Based Health and AI Explanation',
     [
       'database fallback works without Edge/Gemini, is idempotent and cannot publish',
+      'approval creates one notice atomically, hides student drafts and preserves independent read states',
       'synthetic health fixtures are idempotent, preserve active session and evaluate Amber/Red with student draft privacy',
     ],
   ],
@@ -114,6 +144,7 @@ const names = [
     'Examiner and Final Marks',
     [
       'unassigned examiners cannot view or submit; assessments stay independent and immutable',
+      'supervisor and examiner component ranges and member completeness are checked server-side',
       '55/45 results differ per student and remain private until coordinator release',
     ],
   ],
@@ -128,6 +159,7 @@ const names = [
     'Defense and Result Controls',
     [
       'defense gate requires accepted milestones, fee and distinct examiner-role accounts',
+      'finalization blocks incomplete staff and pending peer marks',
       'released correction requires a reason/version and keeps the shared group component identical',
     ],
   ],
@@ -181,27 +213,58 @@ const matrix = names.map(([name, evidence], index) => {
     limitations:
       index === 5
         ? geminiVerified
-          ? 'Real Gemini draft persisted and fixed risk/no automatic publication verified; live exhausted quota was not tested.'
+          ? 'Real Gemini generation and output validation verified on fixed synthetic health evidence. Actual SQL persistence, fixed risk and human publication are tested separately. Live exhausted quota was not tested.'
           : 'Live Gemini success is not verified; required fallback and controlled-provider tests pass.'
         : index === 9
           ? 'Compiled demo checked in Chromium, Firefox and WebKit at 320, 375, 768 and 1366 pixels; physical device Safari was not certified.'
           : null,
   };
 });
+const browserRuns = ['pdf-review-e2e.json', 'pdf-review-firefox-final.json']
+  .map(name => ({ name, file: path.join(root, 'handover/verification', name) }))
+  .filter(run => fs.existsSync(run.file))
+  .map(run => ({ name: run.name, data: JSON.parse(fs.readFileSync(run.file, 'utf8')) }));
 if (browser) {
-  assert.equal(browser.stats.expected, 36, 'Every three-engine browser case must pass');
-  assert.equal(browser.stats.unexpected, 0);
-  assert.equal(browser.stats.skipped, 0);
+  const completed = new Map();
+  function collect(suites) {
+    for (const suite of suites) {
+      for (const spec of suite.specs || []) for (const test of spec.tests || [])
+        completed.set(test.projectId + ':' + spec.id, { title: spec.title, ...test });
+      collect(suite.suites || []);
+    }
+  }
+  for (const run of browserRuns) collect(run.data.suites);
+  assert.equal(completed.size, 36, 'Every three-engine browser case must execute');
+  for (const name of ['chromium', 'firefox', 'webkit'])
+    assert.equal([...completed.values()].filter(test => test.projectId === name).length, 12);
+  for (const test of completed.values()) {
+    assert.equal(test.status, 'expected', 'Browser case did not pass: ' + test.projectId + ' ' + test.title);
+    assert.equal(test.results.at(-1).status, 'passed');
+  }
   matrix[9].responsiveChecks = 3;
-  matrix[9].browserCases = 36;
+  matrix[9].browserCases = completed.size;
 } else matrix[9].status = 'PARTIAL_RESPONSIVE_EVIDENCE_MISSING';
+const originalPrd = fs.readFileSync(path.join(root, 'docs/ORIGINAL-MVP-PRD.md'));
+for (let i = 1; i <= 10; i++)
+  assert(originalPrd.toString().includes('Test Case ' + i + ':'), 'Original PRD procedure missing');
+const workflow = JSON.parse(fs.readFileSync(path.join(dir, 'local-workflow.json'), 'utf8'));
+assert.equal(workflow.passed, true);
+assert.equal(workflow.checks.length, 9);
+const connected = JSON.parse(fs.readFileSync(path.join(dir, 'local-browser-audit.json'), 'utf8'));
+assert.equal(connected.allChecksPassed, true, 'Connected local pages and refresh checks must pass');
+assert.equal(connected.runtimeErrors.length, 0);
 const result = {
   checkedAt: new Date().toISOString(),
   specification:
-    'Ten names from the pasted MVP brief; detailed procedures were not supplied. Assertions are the documented acceptance interpretation.',
+    'The original complete MVP PRD before team splitting, including all ten detailed procedures and expected results. See docs/ORIGINAL-TEN-ACCEPTANCE-CASES.md.',
+  originalPrdSha256: crypto.createHash('sha256').update(originalPrd).digest('hex'),
   frontend: { total: frontend.numTotalTests, passed: frontend.numPassedTests },
   database: databasePasses,
-  sdkHTTP: 4,
+  sdkHTTP: 10,
+  frontendRawReports: frontendReports.length,
+  browserRuns: browserRuns.map(run => ({report: run.name, stats: run.data.stats})),
+  connectedBrowserChecks: connected.functionalChecks,
+  connectedPages: { core: connected.corePages, advanced: connected.advancedPages },
   functionalCasesPassed: 10,
   allResponsiveEvidencePresent: Boolean(browser),
   matrix,

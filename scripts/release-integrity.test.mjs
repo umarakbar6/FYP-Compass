@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { createReleaseManifest } from './create-release-manifest.mjs';
 
-for (const folder of ['http', 'health-agent']) {
+for (const folder of ['http', 'health-agent', 'agents']) {
   test('release fingerprint detects shared backend ' + folder + ' source changes', () => {
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'fyp-release-security-'));
     try {

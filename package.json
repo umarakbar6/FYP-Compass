@@ -19,6 +19,7 @@
     "dev:v2": "vite --host 127.0.0.1 --mode v2",
     "build:v2": "tsc -b && vite build --mode v2",
     "local:server": "node backend/local-tests/local-server.mjs",
+    "demo:local": "node scripts/start-local-demo.mjs",
     "dev:local": "vite --host 127.0.0.1 --port 5182 --strictPort --mode localbackend",
     "test:local-http": "node --test backend/local-tests/local-http.test.mjs",
     "build:cloud": "node scripts/build-cloud.mjs",
@@ -36,7 +37,8 @@
     "db:check": "node scripts/generate-installers.mjs --check",
     "configure:deployment": "node scripts/configure-deployment.mjs",
     "test:email": "node --test backend/email/*.test.mjs",
-    "security:check": "node scripts/security-check.mjs"
+    "security:check": "node scripts/security-check.mjs",
+    "test:local-browser": "node e2e/connected-local-audit.cjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

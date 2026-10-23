@@ -81,6 +81,19 @@ it('matching respects preference rounds, topic evidence and already occupied cap
   expect(draft.proposed[1].preference_rank).toBe(2);
   expect(draft.unmatched).toEqual([]);
 });
+it('original PRD caps matching topic tie points at two even with three shared tags', () => {
+  const draft = matchingPreview(
+    [
+      {
+        id: 'group',
+        proposal: { supervisor_ids: ['one', 'two', 'three'], topic_ids: ['web', 'ai', 'data'] },
+      },
+    ],
+    [{ supervisor_id: 'one', max_groups: 1, topic_ids: ['web', 'ai', 'data'] }],
+  );
+  expect(draft.proposed[0].topic_matches).toBe(2);
+  expect(draft.proposed[0].preference_rank).toBe(1);
+});
 it('scheduling never invents participant availability', () => {
   const base = {
     projects: [{ id: 'g', supervisor_id: 's', ready: true }],

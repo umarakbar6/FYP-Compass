@@ -5,7 +5,7 @@ export default defineConfig({
   expect: { timeout: 15000 },
   fullyParallel: false,
   workers: 1,
-  reporter: [['list'], ['json', { outputFile: 'handover/verification/pdf-review-e2e.json' }]],
+  reporter: [['list'], ['json', { outputFile: process.env.FYP_E2E_REPORT_PATH || 'handover/verification/pdf-review-e2e.json' }]],
   use: {
     baseURL: 'http://127.0.0.1:5190',
     trace: 'retain-on-failure',

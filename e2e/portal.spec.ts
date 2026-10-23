@@ -12,9 +12,15 @@ async function accessible(page: Page) {
   await expect(page.getByRole('heading', { name: 'We could not open this screen.' })).toHaveCount(
     0,
   );
-  const result = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-    .analyze();
+  const axe = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']);
+  if (process.platform === 'win32' && page.context().browser()?.browserType().name() === 'firefox') {
+    // Firefox's Windows popup teardown can hang axe's temporary result window.
+    // The documented same-page mode preserves these checks: our demo has no frames.
+    // Fail if that premise changes instead of silently excluding frame content.
+    expect(page.frames()).toHaveLength(1);
+    axe.setLegacyMode(true);
+  }
+  const result = await axe.analyze();
   expect(
     result.violations.map((v) => ({
       id: v.id,
@@ -96,6 +102,6 @@ test('proposal review opens the correct AI assistant with its project and select
   await page.getByRole('link', { name: 'Open proposal review assistant' }).click();
   await expect(page).toHaveURL(/\/supervisor\/assistants\?kind=proposal&project=/);
   await expect(page.getByRole('heading', { name: 'AI assistants' })).toBeVisible();
-  await expect(page.getByLabel('Assistant')).toHaveValue('proposal');
+  await expect(page.getByRole('combobox', { name: 'Assistant', exact: true })).toHaveValue('proposal');
   await accessible(page);
 });

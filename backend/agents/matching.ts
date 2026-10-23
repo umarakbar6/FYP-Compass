@@ -52,7 +52,10 @@ export function matchingPreview(
         return {
           g,
           target,
-          topic: g.proposal.topic_ids.filter((t) => expertise.get(target)?.has(t)).length,
+          topic: Math.min(
+            2,
+            g.proposal.topic_ids.filter((t) => expertise.get(target)?.has(t)).length,
+          ),
           similarity: semantic[g.id + ':' + target] ?? -1,
         };
       })
@@ -75,6 +78,6 @@ export function matchingPreview(
     proposed,
     unmatched: groups.filter((g) => !proposed.some((p) => p.group_id === g.id)).map((g) => g.id),
     method:
-      'Preference rounds first, then topic overlap, semantic fit and stable ID; draft preview. Saved matching remains authoritative.',
+      'Preference rounds first, then topic overlap capped at two points, semantic fit and stable ID; draft preview. Saved matching remains authoritative.',
   };
 }
