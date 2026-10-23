@@ -322,7 +322,7 @@ export function MatchingPage() {
           <h1>Supervisor matching</h1>
           <p>
             Matching starts with each group’s first choice, then considers second and third choices.
-            Up to three topic points break ties within each round. The saved seed resolves any
+            Up to two topic points break ties within each round. The saved seed resolves any
             remaining ties.
           </p>
         </div>

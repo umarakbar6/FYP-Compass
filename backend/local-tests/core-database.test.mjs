@@ -4,6 +4,7 @@ import { PGlite } from '@electric-sql/pglite';
 import fs from 'node:fs';
 import test, { before, after, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 const uid = (n) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 const coord = uid(200),
   sups = [uid(1), uid(2), uid(3)],
@@ -200,6 +201,67 @@ test('preference-first rounds prevent stronger-topic second choices displacing f
   assert.equal(report.groups.find((g) => g.id === b).allocation, null);
   assert.equal(report.capacities.find((c) => c.supervisor_id === sups[0]).allocated, 1);
 });
+test('original PRD first preference with zero tags defeats third preference with three tags', async () => {
+  for (const sup of sups)
+    await config('capacity', {
+      session_id: sid,
+      supervisor_id: sup,
+      max_groups: sup === sups[0] ? 1 : 0,
+      topic_ids: topics.slice(0, 3),
+    });
+  const first = await group(students[0]);
+  await proposal(first, sups, []);
+  const third = await group(students[1]);
+  await proposal(third, [sups[1], sups[2], sups[0]], topics.slice(0, 3));
+  await actor(coord);
+  await rpc('fyp_v2_core_match', ['original-prd-preference']);
+  const report = await rpc('fyp_v2_core_report');
+  const winner = report.groups.find((g) => g.id === first).allocation;
+  assert.equal(winner.preference_rank, 1);
+  assert.equal(winner.topic_points, 0);
+  assert.equal(winner.capacity_before, 1);
+  assert.equal(report.groups.find((g) => g.id === third).allocation, null);
+});
+
+test('original PRD caps three shared tags at two points and records the repeatable seeded lottery', async () => {
+  for (const sup of sups)
+    await config('capacity', {
+      session_id: sid,
+      supervisor_id: sup,
+      max_groups: sup === sups[0] ? 1 : 0,
+      topic_ids: topics.slice(0, 3),
+    });
+  const two = await group(students[0]);
+  const twoProposal = (await proposal(two, sups, topics.slice(0, 2))).proposal.id;
+  const three = await group(students[1]);
+  const threeProposal = (await proposal(three, sups, topics.slice(0, 3))).proposal.id;
+  const hash = (s) => createHash('md5').update(s).digest('hex');
+  let seed;
+  for (let i = 0; i < 1000; i++) {
+    const candidate = 'prd-cap-' + i;
+    if (hash(candidate + ':' + twoProposal) < hash(candidate + ':' + threeProposal)) {
+      seed = candidate;
+      break;
+    }
+  }
+  assert(seed);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt) await db.exec('reset role;delete from fyp_core_v2.allocations');
+    await actor(coord);
+    await rpc('fyp_v2_core_match', [seed]);
+    const report = await rpc('fyp_v2_core_report');
+    const winner = report.groups.find((g) => g.id === two).allocation;
+    assert(winner, 'Two tags and three tags must tie at the cap; seed chooses two-tag proposal');
+    assert.equal(winner.topic_points, 2);
+    assert.equal(winner.shared_topic_count, 2);
+    assert.equal(winner.capacity_before, 1);
+    assert.equal(winner.lottery_used, true);
+    assert.equal(winner.seed, seed);
+    assert.match(winner.explanation, /topic tie points 2\/2/);
+    assert.equal(report.groups.find((g) => g.id === three).allocation, null);
+  }
+});
+
 test('stored seed repeats exact ties, capacities never overflow and manual changes need a reason', async () => {
   for (const sup of sups)
     await config('capacity', {
@@ -274,6 +336,48 @@ test('similarity requires human justification and approval creates one milestone
   assert.equal(ms.projects.find((p) => p.id === b).milestones.length, 1);
   assert(wa.proposal.id);
 });
+test('original PRD late submitted evidence and a separate overdue milestone remain distinct', async () => {
+  await config('template', {
+    session_id: sid,
+    name: 'Implementation',
+    description: 'Build evidence',
+    days: 14,
+  });
+  const { g, sup } = await approved();
+  await db.exec('reset role');
+  await db.query(
+    "update fyp_core_v2.milestones set deadline=now()-interval '1 day' where group_id=$1",
+    [g],
+  );
+  await actor(students[0]);
+  let workspace = await rpc('fyp_v2_core_get_milestone_workspace');
+  const milestones = workspace.projects.find((p) => p.id === g).milestones;
+  assert.equal(milestones.length, 2);
+  const late = milestones[0],
+    overdue = milestones[1];
+  const doc = await uploaded(g, students[0], late.id);
+  workspace = await rpc('fyp_v2_core_submit_student_milestone', [
+    late.id,
+    doc,
+    'Late but genuine submitted evidence.',
+    null,
+  ]);
+  assert.equal(
+    workspace.projects.find((p) => p.id === g).milestones.find((m) => m.id === late.id).status,
+    'submitted',
+  );
+  await actor(sup);
+  const health = (await rpc('get_health_workspace')).projects.find((p) => p.id === g).health;
+  assert.equal(health.level, 'red');
+  assert(health.rules.some((r) => r.code === 'MILESTONE_LATE' && r.evidence.includes(late.name)));
+  assert(
+    health.rules.some((r) => r.code === 'MILESTONE_OVERDUE' && r.evidence.includes(overdue.name)),
+  );
+  assert(
+    !health.rules.some((r) => r.code === 'MILESTONE_OVERDUE' && r.evidence.includes(late.name)),
+  );
+});
+
 test('full group/proposal/matching/rework/contribution/health/assessment/result workflow works in PostgreSQL', async () => {
   const { g, sup } = await approved();
   let ms = await rpc('fyp_v2_core_get_milestone_workspace');

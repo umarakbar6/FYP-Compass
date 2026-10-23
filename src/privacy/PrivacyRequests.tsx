@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase } from '../lib/supabase';
-import { localBackend } from '../lib/backend-version';
 import { privacyRequest } from './api';
 import { Button, ErrorMessage, LoadingState } from '../components/ui';
 type DataRequest = {
@@ -52,7 +51,7 @@ export function PrivacyRequests() {
     setConfirm(false);
     setMessage('');
     setError('');
-    if (!supabase || localBackend || !actor) {
+    if (!supabase || !actor) {
       setError('Data requests require the connected portal.');
       setBusy(false);
       return;
@@ -75,7 +74,7 @@ export function PrivacyRequests() {
     };
   }, [actor]);
   async function run(name: string, args: Record<string, unknown>, success: string) {
-    if (!supabase || localBackend || busy || !actor) return;
+    if (!supabase || busy || !actor) return;
     const current = ++revision.current;
     setBusy(true);
     setError('');
@@ -157,9 +156,7 @@ export function PrivacyRequests() {
             I confirm this request concerns my own information and understand that retention
             requirements may apply.
           </label>
-          <Button
-            disabled={busy || !confirm || detail.trim().length < 10 || !supabase || localBackend}
-          >
+          <Button disabled={busy || !confirm || detail.trim().length < 10 || !supabase}>
             Save data request
           </Button>
         </form>

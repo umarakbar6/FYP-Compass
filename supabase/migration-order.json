@@ -28,5 +28,6 @@
   "202610160003_upload_budgets.sql",
   "202610160004_account_capacity.sql",
   "202610160005_free_security.sql",
-  "202610160006_security_monitor_coverage.sql"
+  "202610160006_security_monitor_coverage.sql",
+  "202610230001_prd_matching_cap.sql"
 ]

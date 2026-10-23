@@ -38,3 +38,14 @@ Enable the local push guard with `git config core.hooksPath .githooks` and insta
 ## Project documentation
 
 The six public context files have distinct roles: [architecture](context/Architecture.md), [phases](context/Phases.md), [database](context/Database.md), [AI prompts](context/Prompts.md), [security boundaries](context/Security.md), and [error handling](context/Error-handling.md). The live system has additional owner-controlled operational records which are not published here.
+
+
+## Client demonstration and original acceptance cases
+
+Use Node 24. Install dependencies with `npm ci --ignore-scripts` and `npm ci --prefix backend/local-tests --ignore-scripts`. Run `npm run demo:local`, then open http://127.0.0.1:5182. Choose one of the nine local accounts on the login page. The complete production SQL schema and private local files persist under `.private/local-backend-full`. Stop with Ctrl+C so the database closes cleanly. If the default ports are in use, set `FYP_LOCAL_WEB_PORT` and `FYP_LOCAL_API_PORT` to two different free ports.
+
+This local mode isolates demonstration data. Cloud students use verified signup and their own accounts at https://fyp-compass-ten.vercel.app. Production secrets are not included in the source package. Without private server Gemini configuration, local health uses the required labeled fallback; other model agents clearly report that configuration is missing.
+
+The unsplit original PRD and all ten detailed acceptance cases are in `docs/ORIGINAL-MVP-PRD.md` and `docs/ORIGINAL-TEN-ACCEPTANCE-CASES.md`. Run the frontend, database, local HTTP and three-engine browser suites using the package scripts. `scripts/audit-ten-cases.mjs --verify-existing` consumes executed raw evidence, checks every frontend test file and requires the complete workflow and connected browser audit; it will not count a missing report as a pass.
+
+For the connected acceptance audit, use a fresh local database: start `npm run demo:local`, run `npm run seed:local-audit`, then `npm run test:local-browser`. Run `npm run test:e2e`, followed by `npm run test:mvp`. The seed refuses to replace existing demonstration data. Non-default loopback addresses can be supplied through `FYP_LOCAL_WEB_URL` and `FYP_LOCAL_API_URL`. Raw failures are retained; repeat reports identify an actual rerun rather than changing a failing result.

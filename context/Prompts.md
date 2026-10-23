@@ -7,3 +7,9 @@ The server validates identity, role, project assignment, request fields, consent
 Optional public-source screening requires separate search consent. Fixed HTTPS providers and bounded retrieved passages supply evidence; missing coverage is disclosed. Matching is not a universal plagiarism verdict. QA source export remains tied to a versioned owner-approved payload digest and is not enabled merely by cloning this repository.
 
 Never place keys or real student information in prompts/test fixtures. Use synthetic evidence for development. Quotas, deadlines, bounded retries, validated fallback and human review remain mandatory. Error-handling.md owns failure behavior; Security.md owns access restrictions.
+
+## Verification and fallback
+
+Controlled-provider integration tests exercise the same production handler over a real isolated SQL reservation and draft history. They verify explicit consent before provider access, student denial of coordinator agents, validated output, actor-private history and rejection of active script output. Their synthetic provider is a test double and is never reported as a real Gemini result.
+
+Real provider smoke evidence is recorded separately when available. A local clone without a server Gemini key uses the original PRD's labeled health fallback. Other drafting agents return an explicit configuration error instead of invented model output. The QA agent reviews its exact previously approved payload; it does not claim that an older payload audits new source changes.

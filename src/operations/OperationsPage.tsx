@@ -3,7 +3,6 @@ import { ClientErrorMonitor } from './ClientErrorMonitor';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase } from '../lib/supabase';
-import { localBackend } from '../lib/backend-version';
 import { Button, ErrorMessage, LoadingState } from '../components/ui';
 type Status = {
   checked_at: string;
@@ -35,8 +34,7 @@ export function OperationsPage() {
     setBusy(true);
     setError('');
     try {
-      if (!supabase || localBackend)
-        throw new Error('Service status requires the connected production backend.');
+      if (!supabase) throw new Error('Connect the portal backend to view service status.');
       const { data, error } = await supabase.rpc('fyp_ops_status');
       if (error) throw new Error('Service status is temporarily unavailable.');
       if (
