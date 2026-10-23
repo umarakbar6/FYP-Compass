@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
-    "@supabase/supabase-js": "^2.57.4",
+    "@supabase/supabase-js": "^2.118.0",
     "fflate": "0.8.3",
     "lucide-react": "^0.468.0",
     "nodemailer": "10.1.0",
