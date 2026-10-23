@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirm your FYP Compass email</title>
+</head>
+<body style="margin:0;padding:0;background-color:#eef3f8;font-family:Arial,Helvetica,sans-serif;color:#172e45;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;">Confirm your email to start your project journey with FYP Compass.</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#eef3f8;">
+    <tr><td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;background-color:#ffffff;border:1px solid #dce5ee;border-radius:16px;overflow:hidden;">
+        <tr><td style="padding:28px 24px;background-color:#12324f;">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr>
+            <td width="60" valign="middle"><img src="{{ .SiteURL }}/brand/compass-email.png" width="48" height="48" alt="FYP Compass logo" style="display:block;border:0;border-radius:10px;"></td>
+            <td valign="middle"><p style="margin:0;font-size:24px;line-height:30px;font-weight:bold;color:#ffffff;">FYP Compass</p><p style="margin:4px 0 0;font-size:10px;line-height:16px;letter-spacing:1.3px;color:#c5dcec;">PROJECT SUPERVISION PORTAL</p></td>
+          </tr></table>
+        </td></tr>
+        <tr><td style="padding:32px 24px;">
+          <p style="margin:0 0 10px;font-size:12px;line-height:18px;font-weight:bold;letter-spacing:1px;color:#25628c;">WELCOME ABOARD</p>
+          <h1 style="margin:0 0 18px;font-size:28px;line-height:36px;color:#12324f;">Confirm your email</h1>
+          <p style="margin:0 0 16px;font-size:16px;line-height:26px;color:#425b70;">You are one step away from your student workspace. Confirm your email to create your project group, submit your proposal and follow your progress.</p>
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin:24px 0;"><tr><td align="center" bgcolor="#1766a0" style="border-radius:8px;background-color:#1766a0;">
+            <a href="{{ .ConfirmationURL }}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:16px 28px;border:1px solid #1766a0;border-radius:8px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:22px;font-weight:bold;text-decoration:none;color:#ffffff;background-color:#1766a0;mso-padding-alt:0;">Confirm email</a>
+          </td></tr></table>
+          <p style="margin:0 0 10px;font-size:14px;line-height:23px;color:#425b70;">If your email app does not open the button, copy and paste this complete link into your browser:</p>
+          <p style="margin:0 0 24px;word-break:break-all;overflow-wrap:anywhere;font-size:12px;line-height:20px;"><a href="{{ .ConfirmationURL }}" style="color:#1766a0;text-decoration:underline;word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f2f6fa;border:1px solid #dce5ee;border-radius:10px;"><tr><td style="padding:20px;">
+            <h2 style="margin:0 0 10px;font-size:16px;line-height:24px;color:#12324f;">Prefer to use a verification code?</h2>
+            <p style="margin:0 0 12px;font-size:14px;line-height:23px;color:#425b70;">Open <a href="{{ .SiteURL }}/auth/confirm" style="color:#1766a0;text-decoration:underline;">the email verification page</a> and enter your signup email with this code:</p>
+            <p style="margin:0 0 12px;font-family:Consolas,Monaco,monospace;font-size:28px;line-height:36px;font-weight:bold;letter-spacing:5px;color:#12324f;">{{ .Token }}</p>
+            <p style="margin:0;font-size:12px;line-height:20px;color:#526b80;">You can also type this address directly: {{ .SiteURL }}/auth/confirm</p>
+          </td></tr></table>
+          <p style="margin:24px 0 12px;font-size:13px;line-height:22px;color:#526b80;">For your security, the link and code expire shortly and can only be used once. Use the latest confirmation email. Never share the code or forward this email.</p>
+          <p style="margin:0;font-size:15px;line-height:24px;color:#172e45;">See you in your workspace,<br><strong>The FYP Compass team</strong></p>
+        </td></tr>
+        <tr><td style="padding:22px 24px;border-top:1px solid #e1e8ef;background-color:#f8fafc;">
+          <p style="margin:0 0 10px;font-size:12px;line-height:20px;color:#526b80;">This email was requested for {{ .Email }}. If you did not create an account, you can safely ignore it.</p>
+          <p style="margin:0;font-size:12px;line-height:20px;"><a href="{{ .SiteURL }}" style="color:#1766a0;text-decoration:underline;">FYP Compass</a> &nbsp; | &nbsp; <a href="{{ .SiteURL }}/privacy" style="color:#1766a0;text-decoration:underline;">Privacy notice</a></p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

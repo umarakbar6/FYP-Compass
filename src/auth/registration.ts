@@ -86,3 +86,28 @@ export async function resendStudentConfirmation(email: string, captchaToken?: st
   });
   if (error) throw signupError(error);
 }
+
+export async function verifyStudentEmailCode(email: string, code: string, captchaToken?: string) {
+  const normalized = email.trim().toLowerCase();
+  const token = code.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized) || normalized.length > 254)
+    throw Error('Enter the email address you used to register.');
+  if (!/^\d{6,10}$/.test(token)) throw Error('Enter the verification code from your latest email.');
+  if (!supabase) throw Error('Email verification requires the connected portal.');
+  const captcha = validatedCaptchaToken(captchaToken);
+  const { data, error } = await supabase.auth.verifyOtp({
+    email: normalized,
+    token,
+    type: 'signup',
+    ...(captcha ? { options: { captchaToken: captcha } } : {}),
+  });
+  if (error?.status === 429 || error?.code?.includes('rate_limit'))
+    throw new RegistrationRequestError(
+      'Too many verification attempts. Wait before trying again.',
+      300,
+    );
+  if (error || !data.session || !data.user?.email_confirmed_at)
+    throw Error(
+      'This code is incorrect, expired or already used. Use the latest email or request a new one.',
+    );
+}

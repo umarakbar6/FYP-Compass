@@ -4,6 +4,28 @@
   min-height: 100vh;
   background: #f3f6fa;
 }
+.email-confirmation-page {
+  width: min(92%, 600px);
+  margin: 32px auto;
+  overflow-wrap: anywhere;
+}
+.email-confirmation-page form,
+.email-confirmation-page label {
+  display: grid;
+  gap: 12px;
+}
+.email-confirmation-page form {
+  padding: 24px 0;
+}
+.email-confirmation-page input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #aabccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #14253b;
+}
 .registration-intro {
   background: linear-gradient(145deg, #10253e, #173e59);
   color: #fff;
