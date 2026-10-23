@@ -15,3 +15,5 @@ Gitleaks, native GitHub push protection, dependency updates, read-only CI tokens
 The expanded local bridge exposes only public functions for which the authenticated role has EXECUTE permission. Service-only attestations and AI completion functions are internal adapters, with named-argument signature validation. They cannot be invoked through browser RPC URLs. New logins receive separate persisted session IDs; logout invalidates both old access and refresh tokens even after a new login.
 
 PDF/DOCX content screening precedes registration of an attachment digest. The local account picker is restricted to a loopback-only development server and nine synthetic identities; it is not a production login mechanism. Production email confirmation, CAPTCHA, SMTP settings and MFA remain separate cloud controls. No test adds fake verified MFA factors or relaxes cloud authentication.
+
+Raw accreditation exports validate the response actor and do not download after the report workspace unmounts. Full report links retain coordinator route protection and the existing server RPC authorization.

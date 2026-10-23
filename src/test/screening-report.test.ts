@@ -102,4 +102,3 @@ describe('Formal report export', () => {
     expect(revoke).toHaveBeenCalledWith('blob:test-report');
   });
 });
-

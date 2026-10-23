@@ -133,8 +133,14 @@ describe('External evidence screening', () => {
       );
   });
   it.each([
-    ['Research &amp; safety &lt;methods&gt; &quot;review&quot;', 'Research & safety <methods> "review"'],
-    ['Literal &amp;lt;tag&amp;gt; and &amp;quot;quote&amp;quot;', 'Literal &lt;tag&gt; and &quot;quote&quot;'],
+    [
+      'Research &amp; safety &lt;methods&gt; &quot;review&quot;',
+      'Research & safety <methods> "review"',
+    ],
+    [
+      'Literal &amp;lt;tag&amp;gt; and &amp;quot;quote&amp;quot;',
+      'Literal &lt;tag&gt; and &quot;quote&quot;',
+    ],
     ['Nested &amp;amp;lt; stays encoded', 'Nested &amp;lt; stays encoded'],
   ])('decodes provider entities once: %s', async (encoded, decoded) => {
     const mock = vi.fn(async (input: RequestInfo | URL) =>

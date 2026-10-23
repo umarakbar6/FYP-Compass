@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
 import { useWorkspace } from '../lib/use-workspace';
 import { Button, EmptyState, ErrorMessage, LoadingState, StatusBadge } from '../components/ui';
@@ -419,15 +420,30 @@ export function MatchingPage() {
 }
 export function ReportsPage() {
   const { user } = useAuth();
+  const [params] = useSearchParams();
   const state = useWorkspace(user, loadCoreReport, 'Unable to load accreditation report.');
   const [chosen, setChosen] = useState('');
   if (!user) return null;
   const r = state.workspace;
-  const session = chosen || r?.sessions.find((s) => s.active)?.id || '';
+  const requested = params.get('session');
+  const session =
+    chosen ||
+    (r?.sessions.some((s) => s.id === requested) ? requested! : '') ||
+    r?.sessions.find((s) => s.active)?.id ||
+    '';
   const summary = r ? reportSummary(r, session) : null;
   const name = (id: string) => r?.people.find((p) => p.id === id)?.full_name || id;
   return (
-    <div className="assessment-page">
+    <div className="assessment-page accreditation-report print-report">
+      <div className="accreditation-print-heading" style={{ display: 'none' }}>
+        <p>FYP Compass</p>
+        <h1>Accreditation report</h1>
+        <p>Academic session: {r?.sessions.find((s) => s.id === session)?.name || 'Session'}</p>
+        <p>
+          Generated: {new Date().toLocaleString()} · Prepared by {user.full_name}
+        </p>
+        <p>Private academic report. Share only with authorized reviewers.</p>
+      </div>
       <div className="page-heading">
         <div>
           <h1>Accreditation report</h1>
@@ -439,6 +455,11 @@ export function ReportsPage() {
           Print / save PDF
         </Button>
       </div>
+      {params.get('view') === 'full' && (
+        <Link className="accreditation-report-controls" to="/coordinator/reports">
+          Back to report summary
+        </Link>
+      )}
       {state.error && <ErrorMessage message={state.error} />}{' '}
       {state.loading ? (
         <LoadingState />
@@ -446,7 +467,7 @@ export function ReportsPage() {
         r &&
         summary && (
           <>
-            <label>
+            <label className="accreditation-report-controls">
               Report session
               <select value={session} onChange={(e) => setChosen(e.target.value)}>
                 {r.sessions.map((s) => (
@@ -576,7 +597,7 @@ export function ReportsPage() {
                   .map(
                     ([low, high]) =>
                       low +
-                      '–' +
+                      ' to ' +
                       high +
                       ': ' +
                       summary.results.filter(
@@ -588,6 +609,13 @@ export function ReportsPage() {
             </section>
             <section className="assessment-card">
               <h2>Allocation audit</h2>
+              {!r.audit.some(
+                (a) =>
+                  Boolean(a) &&
+                  typeof a === 'object' &&
+                  (a as { action?: string }).action === 'manual_allocation' &&
+                  summary.ids.has((a as { record_id: string }).record_id),
+              ) && <p>No manual allocation changes were recorded for this session.</p>}
               {r.audit
                 .filter(
                   (

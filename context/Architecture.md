@@ -11,3 +11,5 @@ Roles are student, supervisor, examiner and coordinator. Database profiles, sess
 The local HTTP bridge now installs the complete 31-migration production schema, including pgvector, governance, reminder, operational and privacy domains. The browser uses the actual Supabase SDK against that loopback bridge. Production continues to use Supabase Auth and Storage; local identities and local Storage are isolated test adapters.
 
 `backend/agents/handler.ts` is shared by the deployed `fyp-assistants-v1` entry and the local function adapter. The health handler was already shared. Both paths keep request validation, actor/assignment checks, quotas, grounded output and private draft persistence. `npm run demo:local` starts the website and persistent local database together; it never connects to the cloud database.
+
+The report summary links to the complete accreditation view with the selected session. The full view reuses the protected accreditation RPC and prints all marks; summary pagination remains available.
