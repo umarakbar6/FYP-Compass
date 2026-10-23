@@ -11,3 +11,5 @@ Deploy the website's logo and email-code form before applying a template that re
 Previously delivered emails cannot be edited. Request a fresh confirmation message after the update and use the latest link/code. If an email app blocks links, type the verification page address into a browser and enter the email code. If an old message predates the code template, request a new one. Link expiry is controlled by Supabase; no success is claimed for an expired or consumed token.
 
 Official reference: https://supabase.com/docs/guides/auth/auth-email-templates and https://supabase.com/docs/reference/javascript/auth-verifyotp.
+
+The code page also requests a fresh signup email directly. Resend waiting time is separate from code verification; provider throttles block repeated requests and show a safe error without a false sent message.
