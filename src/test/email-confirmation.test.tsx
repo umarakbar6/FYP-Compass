@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ConfirmStudentEmail } from '../auth/RegistrationPages';
-import { verifyStudentEmailCode } from '../auth/registration';
+import { verifyStudentEmailCode, verifyStudentEmailLink } from '../auth/registration';
 
 const live = vi.hoisted(() => ({ verifyOtp: vi.fn(), resend: vi.fn() }));
 vi.mock('../lib/supabase', () => ({ supabase: { auth: live }, demoEnabled: false }));
@@ -155,4 +155,43 @@ it('prevents duplicate requests while verification is pending', async () => {
     finish(confirmed());
   });
   expect(await screen.findByRole('status')).toHaveTextContent('Your email is verified');
+});
+
+it('opens a first-party link without consuming it and removes the proof from the address bar', async () => {
+  const proof = 'a'.repeat(56);
+  window.history.replaceState({}, '', '/auth/confirm#confirmation_token=' + proof);
+  render(
+    <MemoryRouter>
+      <ConfirmStudentEmail />
+    </MemoryRouter>,
+  );
+  expect(window.location.hash).toBe('');
+  expect(live.verifyOtp).not.toHaveBeenCalled();
+  expect(screen.queryByLabelText('Email address')).not.toBeInTheDocument();
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm email' }));
+  });
+  expect(live.verifyOtp).toHaveBeenCalledWith({ token_hash: proof, type: 'signup' });
+  expect(await screen.findByRole('status')).toHaveTextContent('Your email is verified');
+});
+it('rejects malformed link proof and provider errors without leaking backend details', async () => {
+  await expect(verifyStudentEmailLink('bad')).rejects.toThrow();
+  expect(live.verifyOtp).not.toHaveBeenCalled();
+  live.verifyOtp.mockResolvedValue({
+    data: {},
+    error: { code: 'otp_expired', message: 'private detail' },
+  });
+  await expect(verifyStudentEmailLink('a'.repeat(56))).rejects.toThrow('expired or already used');
+});
+it('lets a failed first-party link use the code and resend form', async () => {
+  window.history.replaceState({}, '', '/auth/confirm#confirmation_token=' + 'a'.repeat(56));
+  render(
+    <MemoryRouter>
+      <ConfirmStudentEmail />
+    </MemoryRouter>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'Use an email code or request a new link' }));
+  expect(screen.getByLabelText('Email address')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Send a new verification email' })).toBeInTheDocument();
+  expect(live.verifyOtp).not.toHaveBeenCalled();
 });

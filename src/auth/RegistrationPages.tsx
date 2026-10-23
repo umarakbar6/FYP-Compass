@@ -9,6 +9,7 @@ import {
   RegistrationRequestError,
   resendStudentConfirmation,
   verifyStudentEmailCode,
+  verifyStudentEmailLink,
 } from './registration';
 import { supabase } from '../lib/supabase';
 import { dashboardPath } from '../types/shared';
@@ -272,6 +273,19 @@ export function StudentRegistrationPage() {
 
 export function ConfirmStudentEmail() {
   const { user, loading, error } = useAuth();
+  const [linkToken, setLinkToken] = useState(() => {
+    const value =
+      new URLSearchParams(window.location.hash.slice(1)).get('confirmation_token') || '';
+    return /^[a-f0-9]{40,128}$/i.test(value) ? value : '';
+  });
+  useEffect(() => {
+    if (new URLSearchParams(window.location.hash.slice(1)).has('confirmation_token'))
+      window.history.replaceState(
+        window.history.state,
+        '',
+        window.location.pathname + window.location.search,
+      );
+  }, []);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
@@ -339,8 +353,10 @@ export function ConfirmStudentEmail() {
     setVerificationError('');
     setNotice('');
     try {
-      await verifyStudentEmailCode(email, code, captchaToken || undefined);
+      if (linkToken) await verifyStudentEmailLink(linkToken, captchaToken || undefined);
+      else await verifyStudentEmailCode(email, code, captchaToken || undefined);
       setVerified(true);
+      setLinkToken('');
     } catch (cause) {
       setVerificationError(
         cause instanceof Error ? cause.message : 'Email verification is unavailable.',
@@ -371,44 +387,50 @@ export function ConfirmStudentEmail() {
         <p role="status">Your email is verified. You can now sign in to your student workspace.</p>
       ) : (
         <form onSubmit={verify}>
-          <h2>Verify with an email code</h2>
+          <h2>{linkToken ? 'Confirm your email securely' : 'Verify with an email code'}</h2>
           <p>
-            Use the code in your latest FYP Compass confirmation email. Never share it with anyone.
+            {linkToken
+              ? 'Your email link is ready. Complete the security check, then press Confirm email to activate your account.'
+              : 'Use the code in your latest FYP Compass confirmation email. Never share it with anyone.'}
           </p>
-          <label>
-            Email address
-            <input
-              type="email"
-              autoComplete="email"
-              maxLength={254}
-              required
-              disabled={busy}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-          <label>
-            Email verification code
-            <input
-              type="text"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              pattern="[0-9]{6,10}"
-              minLength={6}
-              maxLength={10}
-              required
-              disabled={busy}
-              value={code}
-              onChange={(event) => setCode(event.target.value)}
-            />
-          </label>
+          {!linkToken && (
+            <>
+              <label>
+                Email address
+                <input
+                  type="email"
+                  autoComplete="email"
+                  maxLength={254}
+                  required
+                  disabled={busy}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </label>
+              <label>
+                Email verification code
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  pattern="[0-9]{6,10}"
+                  minLength={6}
+                  maxLength={10}
+                  required
+                  disabled={busy}
+                  value={code}
+                  onChange={(event) => setCode(event.target.value)}
+                />
+              </label>
+            </>
+          )}
           <Turnstile action="signup" onToken={setCaptchaToken} revision={captchaRevision} />
           <Button
             type="submit"
             disabled={
               busy ||
               secondsRemaining > 0 ||
-              !/^\d{6,10}$/.test(code.trim()) ||
+              (!linkToken && !/^\d{6,10}$/.test(code.trim())) ||
               (authCaptchaRequired && !captchaToken)
             }
           >
@@ -418,22 +440,37 @@ export function ConfirmStudentEmail() {
                 ? `Retry available in ${secondsRemaining}s`
                 : 'Confirm email'}
           </Button>
-          <Button
-            type="button"
-            variant="secondary"
-            disabled={
-              busy ||
-              secondsRemaining > 0 ||
-              resendSeconds > 0 ||
-              !email.trim() ||
-              (authCaptchaRequired && !captchaToken)
-            }
-            onClick={() => void resendCode()}
-          >
-            {resendSeconds > 0
-              ? `Resend available in ${resendSeconds}s`
-              : 'Send a new verification email'}
-          </Button>
+          {!linkToken && (
+            <Button
+              type="button"
+              variant="secondary"
+              disabled={
+                busy ||
+                secondsRemaining > 0 ||
+                resendSeconds > 0 ||
+                !email.trim() ||
+                (authCaptchaRequired && !captchaToken)
+              }
+              onClick={() => void resendCode()}
+            >
+              {resendSeconds > 0
+                ? `Resend available in ${resendSeconds}s`
+                : 'Send a new verification email'}
+            </Button>
+          )}
+          {linkToken && (
+            <Button
+              type="button"
+              variant="ghost"
+              disabled={busy}
+              onClick={() => {
+                setLinkToken('');
+                setVerificationError('');
+              }}
+            >
+              Use an email code or request a new link
+            </Button>
+          )}
           {notice && <p role="status">{notice}</p>}
           {verificationError && <ErrorMessage message={verificationError} />}
         </form>
