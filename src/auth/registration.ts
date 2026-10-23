@@ -111,3 +111,25 @@ export async function verifyStudentEmailCode(email: string, code: string, captch
       'This code is incorrect, expired or already used. Use the latest email or request a new one.',
     );
 }
+
+// The fragment is never sent to the web server. Only an explicit form submission
+// exchanges this one-time proof; mail scanners cannot consume it with a GET.
+export async function verifyStudentEmailLink(tokenHash: string, captchaToken?: string) {
+  if (!/^[a-f0-9]{40,128}$/i.test(tokenHash)) throw Error('This verification link is invalid.');
+  if (!supabase) throw Error('Email verification requires the connected portal.');
+  const captcha = validatedCaptchaToken(captchaToken);
+  const { data, error } = await supabase.auth.verifyOtp({
+    token_hash: tokenHash,
+    type: 'signup',
+    ...(captcha ? { options: { captchaToken: captcha } } : {}),
+  });
+  if (error?.status === 429 || error?.code?.includes('rate_limit'))
+    throw new RegistrationRequestError(
+      'Too many verification attempts. Wait before trying again.',
+      300,
+    );
+  if (error || !data.session || !data.user?.email_confirmed_at)
+    throw Error(
+      'This link is incorrect, expired or already used. Request a new verification email.',
+    );
+}

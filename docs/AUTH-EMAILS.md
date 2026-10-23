@@ -13,3 +13,9 @@ Previously delivered emails cannot be edited. Request a fresh confirmation messa
 Official reference: https://supabase.com/docs/guides/auth/auth-email-templates and https://supabase.com/docs/reference/javascript/auth-verifyotp.
 
 The code page also requests a fresh signup email directly. Resend waiting time is separate from code verification; provider throttles block repeated requests and show a safe error without a false sent message.
+
+## Mobile email compatibility repair
+
+The primary button and visible backup now open the first-party `/auth/confirm#confirmation_token=...` page, using Supabase `TokenHash`. A user explicitly submits the proof after the security check. Merely fetching or previewing the link never consumes it. The fragment stays out of HTTP request logs and is removed from browser history after the page captures it in memory. Refreshing uses the email-code alternative. Verification accepts only signup proofs, never a URL-supplied role, redirect or authentication type. Existing Supabase confirmation URLs remain supported.
+
+The versioned raster logo `/brand/compass-email-v2.png` permits cross-origin image embedding. Only this public image gets the exception; the application keeps its same-origin resource policy. Its new URL avoids cached failures for the previous image. Email apps may still block all remote images or links by user/security policy; the code and typed verification address remain visible. Previously delivered emails cannot change.
