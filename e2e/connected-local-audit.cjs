@@ -54,7 +54,9 @@ async function login(page, account) {
         await page.reload(); await settle(page);
         add(role + ' session survives refresh', new URL(page.url()).pathname === '/' + role + '/dashboard');
         const forbidden = role === 'student' || role === 'supervisor' ? '/coordinator/configuration' : '/student/group';
-        await page.goto(base + forbidden); await settle(page);
+        await page.goto(base + forbidden);
+        await page.waitForURL('**/' + role + '/dashboard', { timeout: 30000 });
+        await settle(page);
         add(role + ' cross-role URL blocked', new URL(page.url()).pathname === '/' + role + '/dashboard');
         for (const [kind, paths] of [['core', core[role]], ['advanced', advanced[role]]]) {
           for (const route of paths) {
