@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { ConfirmStudentEmail } from '../auth/RegistrationPages';
 import { verifyStudentEmailCode } from '../auth/registration';
 
-const live = vi.hoisted(() => ({ verifyOtp: vi.fn() }));
+const live = vi.hoisted(() => ({ verifyOtp: vi.fn(), resend: vi.fn() }));
 vi.mock('../lib/supabase', () => ({ supabase: { auth: live }, demoEnabled: false }));
 vi.mock('../auth/AuthProvider', () => ({
   useAuth: () => ({ user: null, loading: false, error: null }),
@@ -19,8 +19,50 @@ beforeEach(() => {
   vi.clearAllMocks();
   window.history.replaceState({}, '', '/auth/confirm');
   live.verifyOtp.mockResolvedValue(confirmed());
+  live.resend.mockResolvedValue({ error: null });
 });
 afterEach(() => window.history.replaceState({}, '', '/'));
+
+it('requests a fresh code without repeating registration and does not delay verification', async () => {
+  render(
+    <MemoryRouter>
+      <ConfirmStudentEmail />
+    </MemoryRouter>,
+  );
+  fireEvent.change(screen.getByLabelText('Email address'), {
+    target: { value: 'student@example.com' },
+  });
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Send a new verification email' }));
+  });
+  expect(live.resend).toHaveBeenCalledWith(
+    expect.objectContaining({ type: 'signup', email: 'student@example.com' }),
+  );
+  expect(screen.getByRole('status')).toHaveTextContent('If this account needs confirmation');
+  expect(screen.getByRole('button', { name: /Resend available in/ })).toBeDisabled();
+  fireEvent.change(screen.getByLabelText('Email verification code'), {
+    target: { value: '123456' },
+  });
+  expect(screen.getByRole('button', { name: 'Confirm email' })).toBeEnabled();
+});
+
+it('a failed resend shows its error rather than claiming a new email was sent', async () => {
+  live.resend.mockResolvedValue({ error: { code: 'over_email_send_rate_limit', status: 429 } });
+  render(
+    <MemoryRouter>
+      <ConfirmStudentEmail />
+    </MemoryRouter>,
+  );
+  fireEvent.change(screen.getByLabelText('Email address'), {
+    target: { value: 'student@example.com' },
+  });
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Send a new verification email' }));
+  });
+  expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Retry available in 300s' })).toBeDisabled();
+  expect(screen.getByText(/hourly limit/)).toBeInTheDocument();
+});
 
 it('verifies only a signup email code with normalized email and no privileged fields', async () => {
   await verifyStudentEmailCode(' Student@Example.com ', ' 123456 ');

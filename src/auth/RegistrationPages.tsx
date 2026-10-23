@@ -145,7 +145,7 @@ export function StudentRegistrationPage() {
             </Button>
             {message && <p role="status">{message}</p>}
             <p>
-              <Link to="/login">Go to login</Link> Â·{' '}
+              <Link to="/login">Go to login</Link> ·{' '}
               <Link to="/forgot-password">Reset password</Link>
             </p>
             <Button
@@ -248,7 +248,7 @@ export function StudentRegistrationPage() {
                 }
               >
                 {busy
-                  ? 'Creating accountâ€¦'
+                  ? 'Creating account…'
                   : secondsRemaining > 0
                     ? `Retry available in ${secondsRemaining}s`
                     : 'Create student account'}
@@ -278,29 +278,66 @@ export function ConfirmStudentEmail() {
   const [captchaRevision, setCaptchaRevision] = useState(0);
   const [busy, setBusy] = useState(false);
   const [verificationError, setVerificationError] = useState('');
+  const [notice, setNotice] = useState('');
   const [verified, setVerified] = useState(false);
   const [retryAfter, setRetryAfter] = useState(0);
   const [secondsRemaining, setSecondsRemaining] = useState(0);
+  const [resendAfter, setResendAfter] = useState(0);
+  const [resendSeconds, setResendSeconds] = useState(0);
   const lock = useRef(false);
   useEffect(() => {
-    if (!retryAfter) return;
-    const tick = () =>
+    if (!retryAfter && !resendAfter) return;
+    const tick = () => {
       setSecondsRemaining(Math.max(0, Math.ceil((retryAfter - Date.now()) / 1000)));
+      setResendSeconds(Math.max(0, Math.ceil((resendAfter - Date.now()) / 1000)));
+    };
     tick();
     const interval = window.setInterval(tick, 1000);
     return () => window.clearInterval(interval);
-  }, [retryAfter]);
+  }, [retryAfter, resendAfter]);
   const failedLink =
     new URLSearchParams(window.location.hash.slice(1)).has('error') ||
     new URLSearchParams(window.location.search).has('error');
-  if (loading && !failedLink) return <LoadingState label="Verifying your emailâ€¦" />;
-  if (user && !failedLink) return <Navigate to={dashboardPath(user.role)} replace />;
+  if (loading && !failedLink) return <LoadingState label="Verifying your email…" />;
+  if (user && (!failedLink || verified)) return <Navigate to={dashboardPath(user.role)} replace />;
+  async function resendCode() {
+    if (
+      lock.current ||
+      Date.now() < retryAfter ||
+      Date.now() < resendAfter ||
+      (authCaptchaRequired && !captchaToken)
+    )
+      return;
+    lock.current = true;
+    setBusy(true);
+    setVerificationError('');
+    setNotice('');
+    try {
+      await resendStudentConfirmation(email, captchaToken || undefined);
+      setNotice(
+        'If this account needs confirmation, a new email has been requested. Check your inbox and spam folder, then use its latest code.',
+      );
+      setResendAfter(Date.now() + 60_000);
+    } catch (cause) {
+      setVerificationError(
+        cause instanceof Error ? cause.message : 'Unable to request another email.',
+      );
+      if (cause instanceof RegistrationRequestError && cause.retryDelaySeconds)
+        setRetryAfter(Date.now() + cause.retryDelaySeconds * 1000);
+    } finally {
+      setCaptchaToken('');
+      setCaptchaRevision((value) => value + 1);
+      lock.current = false;
+      setBusy(false);
+    }
+  }
   async function verify(event: FormEvent) {
     event.preventDefault();
     if (lock.current || Date.now() < retryAfter || (authCaptchaRequired && !captchaToken)) return;
     lock.current = true;
     setBusy(true);
     setVerificationError('');
+    setNotice('');
     try {
       await verifyStudentEmailCode(email, code, captchaToken || undefined);
       setVerified(true);
@@ -381,11 +418,28 @@ export function ConfirmStudentEmail() {
                 ? `Retry available in ${secondsRemaining}s`
                 : 'Confirm email'}
           </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={
+              busy ||
+              secondsRemaining > 0 ||
+              resendSeconds > 0 ||
+              !email.trim() ||
+              (authCaptchaRequired && !captchaToken)
+            }
+            onClick={() => void resendCode()}
+          >
+            {resendSeconds > 0
+              ? `Resend available in ${resendSeconds}s`
+              : 'Send a new verification email'}
+          </Button>
+          {notice && <p role="status">{notice}</p>}
           {verificationError && <ErrorMessage message={verificationError} />}
         </form>
       )}
       <p>
-        <Link to="/login">Sign in</Link> Â·{' '}
+        <Link to="/login">Sign in</Link> ·{' '}
         <Link to="/register">Register or resend verification</Link>
       </p>
     </main>
